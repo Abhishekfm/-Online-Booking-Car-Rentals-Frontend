@@ -45,9 +45,16 @@ export function SearchPage({BaseUrl}){
     const [endDate, setEndDate] = useState("")
     const [countryError, setCountryError] = useState(false)
     const [stateError, setStateError] = useState(false)
+    const [cityError, setCityError] = useState(false)
+    const [startError, setStartError] = useState(false)
+    const [endError, setEndError] = useState(false)
     
     //Countrty suggestion when typing
     const countrySuggestion = async(location)=>{
+        if(state || city){
+            setCity("")
+            setState("")
+        }
         setCountry(location)
         setCountryError(false)
     }
@@ -60,6 +67,9 @@ export function SearchPage({BaseUrl}){
     //getCode function with one argument which is country and it is returning the code 
     // and by that code an api which return all state with country code
     const stateSuggestion = async(location)=>{
+        if(city){
+            setCity("")
+        }
         if(!country){
             setCountryError(true)
             setState("")
@@ -100,6 +110,7 @@ export function SearchPage({BaseUrl}){
         const myCode = countryCode
         setStateError(false)
         setCountryError(false)
+        setCityError(false)
         await setCityData(myCode, state)
     }
     const fillCity = (val) => {
@@ -113,6 +124,10 @@ export function SearchPage({BaseUrl}){
     }
 
     const restrictEnd = (val) => {
+        if(!startDate){
+            setStartError(true)
+            return
+        }
         setEndDate(val)
     }
 
@@ -179,6 +194,11 @@ export function SearchPage({BaseUrl}){
     const showResults = async ()=>{
         try {
             if(!country || !state || !city || !startDate || !endDate){
+                setCountryError(true)
+                setStateError(true)
+                setCityError(true)
+                setStartError(true)
+                setEndError(true)
                 toast.error("Provide All Details")
                 return
             }
@@ -220,7 +240,7 @@ export function SearchPage({BaseUrl}){
                         <input className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" type="text" value={country} placeholder="Country" onChange={(event)=>{countrySuggestion(event.target.value)}}/>
                         {countryError?
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">Country Cant be Empty</label>:""}
-                        <div className="flex flex-col text-black max-h-[200px] overflow-x-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
+                        <div className="flex flex-col text-black max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
                             {countryData && countryData.filter((item) => {
                                 const searchTerm = country.toLowerCase()
                                 const fullCountry = item.name.toLowerCase()
@@ -237,7 +257,7 @@ export function SearchPage({BaseUrl}){
                         <input className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" type="text" placeholder="State" value={state} onChange={(event)=>{stateSuggestion(event.target.value)}} />
                         {stateError?
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">State Cant be Empty</label>:""}
-                        <div className="flex flex-col text-black max-h-[200px] overflow-x-scroll w-full text-[18px] bg-white top-[80px] w-full left-[0px] absolute">
+                        <div className="flex flex-col text-black max-h-[200px] overflow-y-scroll w-full text-[18px] bg-white top-[80px] w-full left-[0px] absolute">
                             {stateData && stateData.filter((item) => {
                                 const searchTerm = state.toLowerCase()
                                 const stateCountry = item.name.toLowerCase()
@@ -252,7 +272,7 @@ export function SearchPage({BaseUrl}){
                     <div className="flex flex-col relative">
                         <h2>Your City</h2>
                         <input className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" type="text" placeholder="City" value={city} onChange={(event)=>{citySuggestion(event.target.value)}} />
-                        <div className="flex flex-col text-black max-h-[200px] overflow-y-scroll w-full text-[18px] bg-white top-[80px] w-full left-[0px] absolute">
+                        <div className="flex flex-col text-black max-h-[200px] overflow-y-scroll w-full text-[18px] bg-white top-[80px] left-[0px] absolute">
                             {cityData && cityData.filter((item) => {
                                 const searchTerm = city.toLowerCase()
                                 const cityCountry = item.name.toLowerCase()
@@ -263,15 +283,20 @@ export function SearchPage({BaseUrl}){
                                 </div>)
                             })}
                         </div>
+                        {cityError?
+                            <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">State Cant be Empty</label>:""}
                     </div>
                     <div className="flex flex-col justify-around ">
                         <h2>Start Date</h2>
                         <input className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" type="datetime-local" value={startDate} min={getCurrentDate()} onChange={(event) =>{restrictStart(event.target.value)}} />
-
+                        {startError?
+                            <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">Start Date Cant be Empty</label>:""}
                     </div>
                     <div className="flex flex-col justify-around ">
                         <h2>End Date</h2>
                         <input className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" type="datetime-local" value={endDate} min={minEndDate()} max={maxEndDate()} name="" id="" onChange={(event)=>{restrictEnd(event.target.value)}} />
+                        {endError?
+                            <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">End Date Cant be Empty</label>:""}
                     </div>
                     <div className="">
                         <button className="bg-[#3A4F7A] h-[50px] px-8 rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] z-10 text-lg text-white" onClick={showResults} >Search</button>
