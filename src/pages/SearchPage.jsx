@@ -4,6 +4,7 @@ import { ErrorContext } from '../contexts/ErrorContext.jsx';
 import { CountryInput } from '../component/CountryInput.jsx';
 import { CarInput } from '../component/CityInput.jsx';
 import { MyForm } from '../component/DateInput.jsx';
+import { CarList } from '../component/CarList.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { StateInput } from '../component/StateInput.jsx';
@@ -17,6 +18,7 @@ export function SearchPage({BaseUrl}) {
   const [cityName, setCityName] = useState("")
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
+  const [carData, setCarData] = useState([])
 //   const { countryError } = useContext(ErrorContext);
 //   const { setCountryError } = useContext(ErrorContext);
 //   const { setStateError } = useContext(ErrorContext);
@@ -74,7 +76,8 @@ export function SearchPage({BaseUrl}) {
         if(!res){
             return
         }else{
-            console.log(res);
+            console.log(res.data.allCar);
+            setCarData(res.data.allCar)
         }
     } catch (error) {
         console.log(error);
@@ -121,6 +124,9 @@ export function SearchPage({BaseUrl}) {
                     <div className="">
                         <button className="bg-[#3A4F7A] h-[50px] px-8 rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] z-10 text-lg text-white" onClick={showResults} >Search</button>
                     </div>
+                </div>
+                <div>
+                  <CarList carData={carData}/>
                 </div>
             </div>
         </div>
