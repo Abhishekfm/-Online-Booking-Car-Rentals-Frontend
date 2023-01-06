@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import { useContext } from 'react';
 // import { ErrorContext } from '../contexts/ErrorContext.jsx';
+import { NavBar } from '../component/NavBar.jsx';
 import { CountryInput } from '../component/CountryInput.jsx';
 import { CityInput } from '../component/CityInput.jsx';
 import { MyForm } from '../component/DateInput.jsx';
@@ -89,6 +90,7 @@ export function SearchPage({BaseUrl}) {
       <>
         <ToastContainer containerId={'toast1'} limit={1}/>
         <div className="flex flex-col h-[800px] bg-[#BAD7E9]">
+            <NavBar/>
             <div className="flex flex-col items-center gap-[20px]">
                 <div>
                     <h1 className="text-[50px] font-extrabold text-[#F9ED69] drop-shadow-lg">Search To <span className="text-[#3A4F7A]">Rent</span> A Car</h1>

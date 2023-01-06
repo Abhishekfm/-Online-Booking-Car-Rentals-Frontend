@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import { useContext } from "react";
 // import { ErrorContext } from "../contexts/ErrorContext.jsx";
+import { NavBar } from "../component/NavBar.jsx";
 import { CarInput } from "../component/CarInput.jsx";
 import { CountryInput } from "../component/CountryInput.jsx";
 import { StateInput } from "../component/StateInput.jsx";
@@ -127,6 +128,7 @@ export function Admin({ BaseUrl }) {
       <>
         <ToastContainer containerId={"toast1"} limit={1} />
         <div className="flex flex-col h-[800px] bg-[#BAD7E9]">
+          <NavBar/>
           <div className="flex flex-col items-center gap-[20px]">
             <div>
               <h1 className="text-[50px] font-extrabold text-[#F9ED69] drop-shadow-lg">
@@ -181,11 +183,12 @@ export function Admin({ BaseUrl }) {
               </div>
               <div className="flex flex-row items-end">
                 <div>
-                <label className="text-lg font-semibold" htmlFor="slctfile">Select Photo of car:</label>
+                <label className="text-lg font-semibold " htmlFor="slctfile">Select Photo of car:</label>
                 <input
                     id="slctfile"
                     type="file"
-                    class="bg-white focus:outline-none focus:shadow-outline-blue border border-gray-300 rounded-md py-2 px-4 block appearance-none leading-normal"
+                    className="block w-full file:text-xl file:font-semibold text-lg file:decoration-none text-gray-900 border h-[50px] file:h-full rounded-lg cursor-pointer bg-gray-50 file:text-white file:outline-none file:bg-slate-600 file:border-slate-600 file:placeholder-white" 
+                    // aria-describedby="file_input_help" 
                     onChange={(e) => {
                       setImage(e.target.files[0]);
                     }}
@@ -207,40 +210,3 @@ export function Admin({ BaseUrl }) {
     </div>
   );
 }
-
-// export const Admin = () => {
-//     const [image, setImage] = useState("")
-//     const uploadImage = async() => {
-//          // Get the file from the event
-//         const file = image
-//         console.log(file);
-//         let url;
-//         // Upload the file to Cloudinary
-//         const formData = new FormData();
-//         formData.append('file', file);
-//         formData.append('upload_preset', 'carimagecloud');
-//         formData.append('cloud_name', 'dl7dfvlz8')
-//         formData.append("api_key", process.env.CLOUD_API_KEY);
-
-//         await fetch('https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload', {
-//           method: 'POST',
-//           body: formData,
-//         })
-//           .then((response) => response.json())
-//           .then((data)=>{
-//             url = data.url
-//             console.log(data);
-//           }).catch((err)=>{
-//             console.log(err);
-//           })
-//           console.log(url);
-//     }
-//     return(
-//         <>
-// <div>
-//     <input type="file" onChange={(e) => {setImage(e.target.files[0])}} />
-//     <button className="Upload this document" onClick={uploadImage}>Upload</button>
-// </div>
-//         </>
-//     )
-// }

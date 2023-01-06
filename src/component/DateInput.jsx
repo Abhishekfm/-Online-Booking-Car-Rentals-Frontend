@@ -30,7 +30,7 @@ export function MyForm({onInputChange}) {
   return (
     <form className='w-full flex gap-4'>
       <div className='flex flex-col'>
-      <label className='text-lg' htmlFor="start-date">Start Date:</label>
+      <label className='text-lg font-semibold' htmlFor="start-date">Start Date:</label>
       <input 
         type="datetime-local" 
         className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0"
@@ -42,7 +42,7 @@ export function MyForm({onInputChange}) {
       />
       </div>
       <div className='flex flex-col'>
-      <label className='text-lg' htmlFor="end-date">End Date:</label>
+      <label className='text-lg font-semibold' htmlFor="end-date">End Date:</label>
       <input 
         type="datetime-local" 
         className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0"

@@ -78,11 +78,11 @@ export function CountryInput(props) {
       />
       {/* {countryError?
               <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">Country Cant be Empty</label>:""} */}
-      <div className="flex flex-col text-black max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
+      <div className="flex flex-col rounded-md text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
       {suggestions.length > 0 && show && (
         <ul >
           {suggestions.map((country) => (
-            <li className="text-start cursor-pointer hover:bg-[#D8D9CF] pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onInputChange(country.name, country.code); fillIn(country)}} key={country.code}>{country.name}</li>
+            <li className="text-start cursor-pointer hover:bg-[#D8D9CF] pl-2 text-[18px] text-black" onMouseDown={()=>{props.onInputChange(country.name, country.code); fillIn(country)}} key={country.code}>{country.name}</li>
           ))}
         </ul>
       )}
