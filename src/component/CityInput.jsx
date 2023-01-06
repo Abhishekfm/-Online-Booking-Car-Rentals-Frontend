@@ -1,7 +1,7 @@
 // country-input.js
 import React, { useState, useEffect } from 'react';
 
-export function CarInput(props) {
+export function CityInput(props) {
   const [cities, setCities] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -66,7 +66,7 @@ export function CarInput(props) {
   }
   return (
     <>
-        <label className='text-lg' htmlFor="ct">Your City:</label>
+        <label className='text-lg font-semibold' htmlFor="ct">Your City:</label>
       <input
         type="text"
         id='ct'
@@ -80,7 +80,7 @@ export function CarInput(props) {
       {suggestions.length > 0 && show && (
         <ul>
           {suggestions.map((city) => (
-            <li className="text-start cursor-pointer pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onInputChange(city.name); fillIn(city)}} key={city.id}>{city.name}</li>
+            <li className="text-start cursor-pointer hover:bg-[#D8D9CF] pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onInputChange(city.name); fillIn(city)}} key={city.id}>{city.name}</li>
           ))}
         </ul>
       )}

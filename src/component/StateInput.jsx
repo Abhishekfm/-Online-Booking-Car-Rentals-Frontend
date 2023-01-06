@@ -65,7 +65,7 @@ export function StateInput(props) {
   }
   return (
     <>
-      <label className='text-lg' htmlFor="st">Your State:</label>
+      <label className='text-lg font-semibold' htmlFor="st">Your State:</label>
       <input
         type="text"
         id='st'
@@ -79,7 +79,7 @@ export function StateInput(props) {
       {suggestions.length > 0 && show && (
         <ul>
           {suggestions.map((state) => (
-            <li className="text-start cursor-pointer pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onStateChange(state.name, state.cities); fillIn(state)}} key={state.id}>{state.name}</li>
+            <li className="text-start cursor-pointer hover:bg-[#D8D9CF] pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onStateChange(state.name, state.cities); fillIn(state)}} key={state.id}>{state.name}</li>
           ))}
         </ul>
       )}

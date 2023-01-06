@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useContext } from 'react';
-import { ErrorContext } from '../contexts/ErrorContext.jsx';
+// import { useContext } from 'react';
+// import { ErrorContext } from '../contexts/ErrorContext.jsx';
 import { CountryInput } from '../component/CountryInput.jsx';
-import { CarInput } from '../component/CityInput.jsx';
+import { CityInput } from '../component/CityInput.jsx';
 import { MyForm } from '../component/DateInput.jsx';
 import { CarList } from '../component/CarList.jsx';
 import { ToastContainer, toast } from 'react-toastify';
@@ -111,7 +111,7 @@ export function SearchPage({BaseUrl}) {
                         */}
                     </div>
                     <div className="flex flex-col relative">
-                        <CarInput key={stateNameValue} cityData={citiesValue} stName={stateNameValue} onInputChange={cityChange} />
+                        <CityInput key={stateNameValue} cityData={citiesValue} stName={stateNameValue} onInputChange={cityChange} />
                         {/* <p>City Name: {cityName}</p> */}
                         {/* {cityError?
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">State Cant be Empty</label>:""} */}

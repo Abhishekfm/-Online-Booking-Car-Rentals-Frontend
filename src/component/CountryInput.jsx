@@ -66,7 +66,7 @@ export function CountryInput(props) {
   }
   return (
     <>
-      <label className='text-lg' htmlFor="cntry">Your Country:</label>
+      <label className='text-lg font-semibold' htmlFor="cntry">Your Country:</label>
       <input
         type="text"
         id='cntry'
@@ -82,7 +82,7 @@ export function CountryInput(props) {
       {suggestions.length > 0 && show && (
         <ul >
           {suggestions.map((country) => (
-            <li className="text-start cursor-pointer pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onInputChange(country.name, country.code); fillIn(country)}} key={country.code}>{country.name}</li>
+            <li className="text-start cursor-pointer hover:bg-[#D8D9CF] pl-2 border-2 text-[18px] border-slate-400 text-black" onMouseDown={()=>{props.onInputChange(country.name, country.code); fillIn(country)}} key={country.code}>{country.name}</li>
           ))}
         </ul>
       )}
