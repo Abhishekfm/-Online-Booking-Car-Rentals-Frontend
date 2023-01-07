@@ -89,11 +89,11 @@ export function SearchPage({BaseUrl}) {
     <div>
       <>
         <ToastContainer containerId={'toast1'} limit={1}/>
-        <div className="flex flex-col h-[800px] bg-[#BAD7E9]">
+        <div className="flex flex-col h-[800px] bg-[#F9F2ED]">
             <NavBar/>
             <div className="flex flex-col items-center gap-[20px]">
                 <div>
-                    <h1 className="text-[50px] font-extrabold text-[#F9ED69] drop-shadow-lg">Search To <span className="text-[#3A4F7A]">Rent</span> A Car</h1>
+                    <h1 className="text-[50px] font-extrabold text-[#3A4F7A] drop-shadow-lg">Search To <span className="text-[#3A4F7A]">Rent</span> A Car</h1>
                 </div>
                 <div className="flex flex-row justify-around w-full items-end">
                     <div className="flex flex-col relative">
