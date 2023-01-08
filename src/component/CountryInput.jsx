@@ -70,7 +70,7 @@ export function CountryInput(props) {
       <input
         type="text"
         id='cntry'
-        className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" 
+        className="text-[20px] rounded-md bg-[#ECE8DD] p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" 
         value={inputValue}
         onChange={handleInputChange}
         onBlur={handleInputBlur}

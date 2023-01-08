@@ -33,7 +33,7 @@ export function MyForm({onInputChange}) {
       <label className='text-lg font-semibold' htmlFor="start-date">Start Date:</label>
       <input 
         type="datetime-local" 
-        className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0"
+        className="text-[20px] rounded-md p-2 bg-[#ECE8DD] focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0"
         id="start-date" 
         value={startDate} 
         onChange={handleStartDateChange}
@@ -45,7 +45,7 @@ export function MyForm({onInputChange}) {
       <label className='text-lg font-semibold' htmlFor="end-date">End Date:</label>
       <input 
         type="datetime-local" 
-        className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0"
+        className="text-[20px] bg-[#ECE8DD] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0"
         id="end-date" 
         value={endDate} 
         onChange={handleEndDateChange}

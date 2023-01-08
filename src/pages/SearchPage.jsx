@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 // import { useContext } from 'react';
 // import { ErrorContext } from '../contexts/ErrorContext.jsx';
+import Banner from "../images/Banner.jpg"
 import { NavBar } from '../component/NavBar.jsx';
 import { CountryInput } from '../component/CountryInput.jsx';
 import { CityInput } from '../component/CityInput.jsx';
 import { MyForm } from '../component/DateInput.jsx';
+import { CarInfo } from '../component/CarInfo';
 import { CarList } from '../component/CarList.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -89,11 +91,14 @@ export function SearchPage({BaseUrl}) {
     <div>
       <>
         <ToastContainer containerId={'toast1'} limit={1}/>
-        <div className="flex flex-col h-[800px] bg-[#F9F2ED]">
+        <div className="flex flex-col h-[800px] bg-[#Ffffff]">
             <NavBar/>
             <div className="flex flex-col items-center gap-[20px]">
-                <div>
-                    <h1 className="text-[50px] font-extrabold text-[#3A4F7A] drop-shadow-lg">Search To <span className="text-[#3A4F7A]">Rent</span> A Car</h1>
+                <div className='w-full h-[110px] p-[10px]'>
+                  <img src={Banner} className="w-full rounded-[20px] h-[400px] object-cover" alt="" />
+                </div>
+                <div className='w-full h-[320px] text-center pt-[10px]'>
+                    <h1 className="text-[50px] font-extrabold text-slate-800 drop-shadow-lg">Search To <span className="text-slate-800">Rent</span> A Car</h1>
                 </div>
                 <div className="flex flex-row justify-around w-full items-end">
                     <div className="flex flex-col relative">
@@ -127,8 +132,9 @@ export function SearchPage({BaseUrl}) {
                         <button className="bg-[#3A4F7A] h-[50px] px-8 rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] z-10 text-lg text-white" onClick={showResults} >Search</button>
                     </div>
                 </div>
-                <div>
-                  <CarList carData={carData}/>
+                <div className='w-full mt-[100px] flex flex-row'>
+                  <CarInfo/>
+                  <CarList className="w-full" carData={carData}/>
                 </div>
             </div>
         </div>
