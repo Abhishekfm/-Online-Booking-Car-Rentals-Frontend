@@ -6,10 +6,11 @@ import { CarInput } from "../component/CarInput.jsx";
 import { CountryInput } from "../component/CountryInput.jsx";
 import { StateInput } from "../component/StateInput.jsx";
 import { CityInput } from "../component/CityInput.jsx";
-import { CarList } from "../component/CarList.jsx";
+import { AllCars } from "../component/AllCars.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useEffect } from "react";
 
 export function Admin({ BaseUrl }) {
   const [countryCodeValue, setCountryCodeValue] = useState("");
@@ -22,6 +23,8 @@ export function Admin({ BaseUrl }) {
   const [numberOfCars, setNumberOfCars] = useState(0)
   const [carName, setCarName] = useState("")
   const [url, setUrl] = useState("")
+  const [skipNo, setSkipNo] = useState(0)
+  const [totalEntriesInCarDb, setTotalEntriesInCarDb] = useState(0)
   //   const { countryError } = useContext(ErrorContext);
   //   const { setCountryError } = useContext(ErrorContext);
   //   const { setStateError } = useContext(ErrorContext);
@@ -57,7 +60,9 @@ export function Admin({ BaseUrl }) {
   const uploadImage = async () => {
     // Get the file from the event
     const file = image;
-    console.log(file);
+    if(!file){
+      return
+    }
     let url;
     // Upload the file to Cloudinary
     const formData = new FormData();
@@ -79,6 +84,7 @@ export function Admin({ BaseUrl }) {
         console.log(err);
       });
     setUrl(url);
+    console.log(url);
   };
   const showResults = async () => {
     try {
@@ -97,37 +103,97 @@ export function Admin({ BaseUrl }) {
         return;
       }
       await uploadImage()
+      let res;
       if(!url){
-        return
+        res = await axios.post(
+          `${BaseUrl}/admin/createcar`,
+          {
+            carName,
+            carLocation:{country: countryNameValue,
+            state: stateNameValue,
+            city: cityName},
+            numberOfCars
+          },
+          { withCredentials: true }
+        );
+      }else{
+        res = await axios.post(
+          `${BaseUrl}/admin/createcar`,
+          {
+            carName,
+            carLocation:{country: countryNameValue,
+            state: stateNameValue,
+            city: cityName},
+            numberOfCars,
+            url
+          },
+          { withCredentials: true }
+        );
       }
-      console.log(url);
-      const res = await axios.post(
-        `${BaseUrl}/admin/createcar`,
-        {
-          carName,
-          carLocation:{country: countryNameValue,
-          state: stateNameValue,
-          city: cityName},
-          numberOfCars,
-          url
-        },
-        { withCredentials: true }
-      );
       if (!res) {
         return;
       } else {
         console.log(res);
+        await showData()
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  async function showData(){
+    try {
+      console.log(skipNo);
+      const res = await axios.post(
+        `${BaseUrl}/admin/showcardb`,
+        {
+          skipNo
+        },
+        { withCredentials: true }
+      );
+      if(!res){
+        return
+      }else{
+        setCarData(res.data.allCar)
+        setTotalEntriesInCarDb(res.data.totalLength)
+      }
+    // do something with the data
+    } catch (error) {
+      // handle error
+      console.log(error);
+    }
+  }
+  //calling one time only
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          console.log(skipNo);
+          const res = await axios.post(
+            `${BaseUrl}/admin/showcardb`,
+            {
+              skipNo
+            },
+            { withCredentials: true }
+          );
+          if(!res){
+            return
+          }else{
+            setCarData(res.data.allCar)
+            setTotalEntriesInCarDb(res.data.totalLength)
+          }
+        // do something with the data
+      } catch (error) {
+        // handle error
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [skipNo]);
   return (
     <div>
       <>
         <ToastContainer containerId={"toast1"} limit={1} />
-        <div className="flex flex-col h-[800px] bg-[#F9F2ED]">
+        <div className="flex flex-col h-[800px] bg-white">
           <NavBar/>
           <div className="flex flex-col items-center gap-[20px]">
             <div>
@@ -179,7 +245,7 @@ export function Admin({ BaseUrl }) {
               </div>
               <div className="flex flex-col">
                 <label className='text-lg font-semibold' htmlFor="noOfCars">Number Of Cars:</label>
-                <input id="noOfCars" className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] focus:border-0 focus:outline-0" value={numberOfCars} onChange={(e)=>{updateNumberOfCar(e.target.value)}} type="number" min={1} max={100} placeholder="Number Of Cars" />
+                <input id="noOfCars" className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-[#ECE8DD] focus:border-0 focus:outline-0" value={numberOfCars} onChange={(e)=>{updateNumberOfCar(e.target.value)}} type="number" min={1} max={100} placeholder="Number Of Cars" />
               </div>
               <div className="flex flex-row items-end">
                 <div>
@@ -187,7 +253,7 @@ export function Admin({ BaseUrl }) {
                 <input
                     id="slctfile"
                     type="file"
-                    className="block w-full file:text-xl file:font-semibold text-lg file:decoration-none text-gray-900 border h-[50px] file:h-full rounded-lg cursor-pointer bg-gray-50 file:text-white file:outline-none file:bg-slate-600 file:border-slate-600 file:placeholder-white" 
+                    className="block w-full bg-[#ECE8DD] file:text-xl file:font-semibold text-lg file:decoration-none text-gray-900 border h-[50px] file:h-full rounded-lg cursor-pointer file:text-white file:outline-none file:bg-slate-600 file:border-slate-600 file:placeholder-white" 
                     // aria-describedby="file_input_help" 
                     onChange={(e) => {
                       setImage(e.target.files[0]);
@@ -201,8 +267,9 @@ export function Admin({ BaseUrl }) {
               </div>
               </div>
             </div>
-            <div>
-              <CarList carData={carData} />
+            <div className="w-full">
+              {carData && totalEntriesInCarDb ?<AllCars reRendor={showData} carData={carData} nom={setSkipNo} BaseUrl={BaseUrl} totalEntry={totalEntriesInCarDb}/>:""}
+              {/* <PageNumber nom={setSkipNo} totalEntry={totalEntriesInCarDb} /> */}
             </div>
           </div>
         </div>
