@@ -95,9 +95,9 @@ export function SearchPage({BaseUrl}) {
             <NavBar/>
             <div className="flex flex-col items-center gap-[20px]">
                 <div className='w-full h-[110px] p-[10px]'>
-                  <img src={Banner} className="w-full rounded-[20px] h-[400px] object-cover" alt="" />
+                  <img src={Banner} className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
                 </div>
-                <div className='w-full h-[320px] text-center pt-[10px]'>
+                <div className='w-full h-[230px] text-center pt-[10px]'>
                     <h1 className="text-[50px] font-extrabold text-slate-800 drop-shadow-lg">Search To <span className="text-slate-800">Rent</span> A Car</h1>
                 </div>
                 <div className="flex flex-row justify-around w-full items-end">
