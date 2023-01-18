@@ -92,7 +92,7 @@ export function SearchPage({BaseUrl}) {
       <>
         <ToastContainer containerId={'toast1'} limit={1}/>
         <div className="flex flex-col h-[800px] bg-[#Ffffff]">
-            <NavBar/>
+            <NavBar BaseUrl={BaseUrl} />
             <div className="flex flex-col items-center gap-[20px]">
                 <div className='w-full h-[110px] p-[10px]'>
                   <img src={Banner} className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
@@ -134,7 +134,7 @@ export function SearchPage({BaseUrl}) {
                 </div>
                 <div className='w-full mt-[100px] flex flex-row'>
                   <CarInfo/>
-                  <CarList className="w-full" carData={carData}/>
+                  <CarList className="w-full" startDate={startDate} endDate={endDate} BaseUrl={BaseUrl} carData={carData}/>
                 </div>
             </div>
         </div>

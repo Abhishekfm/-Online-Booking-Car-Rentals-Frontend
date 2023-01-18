@@ -194,7 +194,7 @@ export function Admin({ BaseUrl }) {
       <>
         <ToastContainer containerId={"toast1"} limit={1} />
         <div className="flex flex-col h-[800px] bg-white">
-          <NavBar/>
+          <NavBar BaseUrl={BaseUrl}/>
           <div className="flex flex-col items-center gap-[20px]">
             <div>
               <h1 className="text-[50px] font-extrabold text-black drop-shadow-lg">
