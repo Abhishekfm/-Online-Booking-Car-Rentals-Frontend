@@ -7,3 +7,11 @@
 .loginHead{
     font-family: 'Ultra', serif;
 }
+.translate-z-1:hover {
+    transform: translateZ(-10px);
+}
+    
+    
+.bg-black{
+    background-color: #000;
+}

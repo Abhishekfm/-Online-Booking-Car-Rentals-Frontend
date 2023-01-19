@@ -1,9 +1,31 @@
 import React from "react";
 import car from "../images/car.png"
+import axios from "axios";
 
 export function CarList(props){
     const carData = props.carData
     console.log(carData);
+    async function rentMe(elem){
+        try {
+            if(props.startDate === props.endDate){
+                console.log("Order Not Placed");
+                return
+            }
+            const res = await axios.post(`${props.BaseUrl}/u/bookcar`,{
+                carId: elem._id,
+                startDate: props.startDate,
+                endDate: props.endDate
+            },{ withCredentials: true })
+            if(!res){
+                return
+            }else{
+                console.log(res);
+                props.showResults();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return(
         <div className="flex w-full gap-4 m-4 flex-col">
         {carData&&carData.map((ele)=>(
@@ -17,7 +39,7 @@ export function CarList(props){
                     <h1 className="text-[40px] font-bold">20000 ₹</h1>
                 </div>
                 <div>
-                    <button className="text-lg rounded-[10px] font-semibold bg-[#1f1f1f] text-white px-4 py-2">Rent Me</button>
+                    <button onClick={()=>{rentMe(ele)}} className="text-lg rounded-[10px] font-semibold bg-[#1f1f1f] text-white px-4 py-2">Rent Me</button>
                 </div>
                 </div>
             </div>

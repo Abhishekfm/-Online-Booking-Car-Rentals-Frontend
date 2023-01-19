@@ -134,7 +134,7 @@ export function SearchPage({BaseUrl}) {
                 </div>
                 <div className='w-full mt-[100px] flex flex-row'>
                   <CarInfo/>
-                  <CarList className="w-full" startDate={startDate} endDate={endDate} BaseUrl={BaseUrl} carData={carData}/>
+                  <CarList className="w-full" showResults={showResults} startDate={startDate} endDate={endDate} BaseUrl={BaseUrl} carData={carData}/>
                 </div>
             </div>
         </div>

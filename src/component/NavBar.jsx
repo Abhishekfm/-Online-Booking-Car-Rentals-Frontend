@@ -24,7 +24,8 @@ export function NavBar(props){
             <Link className="text-lg font-semibold tracking-wide uppercase" to="/home">DriveMe</Link>
             <div className="hidden md:flex">
               <Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/home" >Home</Link>
-              <Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/home" >Order</Link>
+              <Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/order" >Order</Link>
+              <Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/users" >Users</Link>
               <Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/admin" >Admin Controller</Link>
               <Link onClick={()=>{logMeOut()}} className="mx-4 text-base font-medium tracking-wide uppercase" to="/login" >LogOut</Link>
             </div>

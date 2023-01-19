@@ -5,11 +5,14 @@ import tyreprint from "../images/tyreprint.png"
 import tyre from "../images/tyre.png"
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { MyContext } from "../contexts/MyContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useContext } from "react";
 
 export function LogIn({BaseUrl}){
+    const [user, setUser] = useContext(MyContext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -31,6 +34,7 @@ export function LogIn({BaseUrl}){
                 return
             }else{
                 console.log(res);
+                setUser(res)
                 navigate("/home")
                 toast.success("Account is Created")
             }
