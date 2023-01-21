@@ -189,7 +189,7 @@ export function Admin({ BaseUrl }) {
       }
     };
     fetchData();
-  }, [skipNo]);
+  }, [skipNo, totalEntriesInCarDb]);
   return (
     <div>
       <>

@@ -19,8 +19,9 @@ export function AllCars(props){
     const [globalVariable, setGlobalVariable, carName, setCarName, carTotal, setCarTotal, carAvailable, setCarAvailable, carUrl, setCarUrl ] = useContext(MyContext);
     // const [clickMoreInfo, setMoreInfo] = useState(1)
     const [isVisibleId, setIsVisibleId] = useState(null);
+    const [isLoading, setIsLoading] = useState(null)
     const navigate = useNavigate()
-    useEffect(()=>{
+    function startAdmin() {
         if(numberOfEntry > 0){
             setNumberOfPages(Math.ceil(numberOfEntry/5))
             console.log(numberOfEntry);
@@ -28,7 +29,10 @@ export function AllCars(props){
         }
         console.log(`numberOfEntry:${numberOfEntry}`);
         console.log(`numberOfPages:${numberOfPages}`);
-    },[])
+    }
+    useEffect(()=>{
+        startAdmin()
+    },[props.totalEntry])
     console.log(carData);
     async function addOneMoreCar(carId){
         try {
@@ -70,14 +74,25 @@ export function AllCars(props){
     }
     async function deleteCar(carId){
         try {
+            setIsLoading(carId)
+            console.log(carId);
+            console.log(isLoading);
             const res = await axios.delete(`${props.BaseUrl}/admin/deletecar/${carId}`,
             { withCredentials: true }
             )
             if(!res){
+                setTimeout(() => {
+                    setIsLoading("");
+                }, 500);
                 return
             }else{
+                setTimeout(() => {
+                    setIsLoading("");
+                    props.reRendor()
+                    startAdmin()
+                }, 500);
                 console.log(res);
-                props.reRendor()
+                // props.reRendor()
             }
         } catch (error) {
             console.log(error);
@@ -131,7 +146,7 @@ export function AllCars(props){
                         </div>
                         <div className="flex flex-col justify-between h-[100px]">
                             <div>
-                                <button onClick={()=>{deleteCar(ele._id)}} className="px-4 w-full py-2 bg-[#CD0404] rounded-md font-semibold text-[#fff]">Delete</button>
+                                {isLoading === ele._id?<button className="px-4 w-full py-2 bg-[#CD0404] rounded-md font-semibold text-[#fff]">Deleting....</button>:<button onClick={()=>{deleteCar(ele._id)}} className="px-4 w-full py-2 bg-[#CD0404] rounded-md font-semibold text-[#fff]">Delete</button>}
                             </div>
                             <div className="flex flex-row items-center w-[150px] justify-between">
                                 <button onClick={()=>{addOneMoreCar(ele._id)}} className="transition ease-in-out delay-10 hover:-translate-y-2 hover:scale-125 duration-300 rounded-[10px] w-[20px] font-semibold text-[#000]"><img src={plus} alt="" /></button>

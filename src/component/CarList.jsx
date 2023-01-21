@@ -1,9 +1,11 @@
 import React from "react";
 import car from "../images/car.png"
 import axios from "axios";
+import { useState } from "react";
 
 export function CarList(props){
     const carData = props.carData
+    const [isLoading, setIsLoading] = useState("")
     console.log(carData);
     async function rentMe(elem){
         try {
@@ -11,16 +13,27 @@ export function CarList(props){
                 console.log("Order Not Placed");
                 return
             }
+            setIsLoading(elem._id)
             const res = await axios.post(`${props.BaseUrl}/u/bookcar`,{
                 carId: elem._id,
                 startDate: props.startDate,
                 endDate: props.endDate
             },{ withCredentials: true })
             if(!res){
+                setTimeout(() => {
+                    setIsLoading("");
+                    props.showResults()
+                    // startAdmin()
+                }, 500);
                 return
             }else{
+                setTimeout(() => {
+                    setIsLoading("");
+                    props.showResults()
+                    // startAdmin()
+                }, 500);
                 console.log(res);
-                props.showResults();
+                // props.showResults();
             }
         } catch (error) {
             console.log(error);
@@ -39,11 +52,14 @@ export function CarList(props){
                     <h1 className="text-[40px] font-bold">20000 ₹</h1>
                 </div>
                 <div>
-                    <button onClick={()=>{rentMe(ele)}} className="text-lg rounded-[10px] font-semibold bg-[#1f1f1f] text-white px-4 py-2">Rent Me</button>
+                    {isLoading===ele._id?<button className="text-lg w-[150px] rounded-[10px] font-semibold bg-[#5B8FB9] text-white px-4 py-2">Renting...</button>:<button onClick={()=>{rentMe(ele)}} className="text-lg w-[150px] rounded-[10px] font-semibold bg-[#5B8FB9] text-white px-4 py-2">Rent Me</button>}
                 </div>
                 </div>
             </div>
         ))}
-    </div>
+        <div className={props.showEmpty?"block w-full text-center":"hidden"}>
+            <h1 className="text-[35px] font-bold">NO ORDERS!</h1>
+        </div>
+        </div>
     )
 }

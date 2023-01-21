@@ -22,6 +22,7 @@ export function SearchPage({BaseUrl}) {
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
   const [carData, setCarData] = useState([])
+  const [showEmpty, setShowEmpty] = useState(false)
 //   const { countryError } = useContext(ErrorContext);
 //   const { setCountryError } = useContext(ErrorContext);
 //   const { setStateError } = useContext(ErrorContext);
@@ -80,6 +81,11 @@ export function SearchPage({BaseUrl}) {
             return
         }else{
             console.log(res.data.allCar);
+            if(res.data.allCar.length <= 0){
+              setShowEmpty(true)
+            }else{
+              setShowEmpty(false)
+            }
             setCarData(res.data.allCar)
         }
     } catch (error) {
@@ -134,7 +140,7 @@ export function SearchPage({BaseUrl}) {
                 </div>
                 <div className='w-full mt-[100px] flex flex-row'>
                   <CarInfo/>
-                  <CarList className="w-full" showResults={showResults} startDate={startDate} endDate={endDate} BaseUrl={BaseUrl} carData={carData}/>
+                  <CarList className="w-full" showEmpty={showEmpty} showResults={showResults} startDate={startDate} endDate={endDate} BaseUrl={BaseUrl} carData={carData}/>
                 </div>
             </div>
         </div>
