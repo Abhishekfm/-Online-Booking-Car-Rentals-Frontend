@@ -1,8 +1,6 @@
 // country-input.js
 import React, { useState, useEffect } from 'react';
 import countryData from "../allCountries.json"
-import { ErrorContext } from '../contexts/ErrorContext';
-import { useContext } from 'react';
 
 export function CountryInput(props) {
   const [countries, setCountries] = useState([]);
