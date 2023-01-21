@@ -22,9 +22,9 @@ export function App(){
         <>
         <MyContext.Provider value={[globalVariable, setGlobalVariable, user, setUser, carName, setCarName, carTotal, setCarTotal, carAvailable, setCarAvailable, carUrl, setCarUrl]}>
             <Routes>
-                <Route exact path="/" element={<SignUp BaseUrl={BaseUrl}/>} />
+                <Route exact path="/signup" element={<SignUp BaseUrl={BaseUrl}/>} />
                 <Route exact path="/login" element={<LogIn BaseUrl={BaseUrl}/>} />
-                <Route exact path="/home" element={<SearchPage BaseUrl={BaseUrl}/>} />
+                <Route exact path="/" element={<SearchPage BaseUrl={BaseUrl}/>} />
                 <Route exact path="/admin" element={<Admin BaseUrl={BaseUrl}/>} />
                 <Route exact path="/order" element={<Order BaseUrl={BaseUrl}/>} />
                 <Route exact path="/users" element={<Users BaseUrl={BaseUrl}/>} />
