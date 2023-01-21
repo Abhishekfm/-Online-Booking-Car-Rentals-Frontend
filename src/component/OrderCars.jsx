@@ -5,9 +5,12 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import Banner from "../images/Banner.jpg"
 import car from "../images/car.png"
+import banner4 from "../images/banner4.jpg"
+import banner5 from "../images/banner5.jpg"
 import { MyContext } from "../contexts/MyContext";
 
 export function OrderCars({ BaseUrl }){
+    const [showEmpty, setShowEmpty] = useState(false)
     const [user, setUser ] = useContext(MyContext)
     const [allOrder, setAllOrder] = useState([])
     async function myOrders(){
@@ -16,6 +19,11 @@ export function OrderCars({ BaseUrl }){
             if(!res){
                 return
             }else{
+                if(res.data.allOrder.length <= 0){
+                    setShowEmpty(true)
+                }else{
+                    setShowEmpty(false)
+                }
                 setAllOrder(res.data.allOrder)
                 console.log(res);
             }
@@ -43,13 +51,13 @@ export function OrderCars({ BaseUrl }){
         <>
         <div className="flex flex-col gap-2">
             <div className='w-full h-[110px] p-[10px]'>
-              <img src={Banner} className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
+              <img src={banner5} className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
             </div>
             <div className='w-full h-[230px] text-center pt-[10px]'>
-                <h1 className="text-[50px] font-extrabold text-slate-800 drop-shadow-lg">My <span className="text-slate-800">Orders</span></h1>
+                <h1 className="text-[50px] font-extrabold drop-shadow-lg text-white drop-shadow-lg">My Orders</h1>
             </div>
             {allOrder&&allOrder.map((ele)=>(
-                <div className="flex w-full p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
+                <div className={!showEmpty?"flex w-full p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400":"hidden"}>
                     <div>
                      <img className="h-[200px] w-[340px] object-cover" src={car} alt="" />
                     </div>
@@ -66,6 +74,9 @@ export function OrderCars({ BaseUrl }){
                     </div>
                 </div>
             ))}
+            <div className={showEmpty?"block w-full text-center":"hidden"}>
+                <h1 className="text-[35px] font-bold">NO ORDERS!</h1>
+            </div>
         </div>
         </>
     )

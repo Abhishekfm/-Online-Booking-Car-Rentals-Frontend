@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import { useContext } from "react";
 // import { ErrorContext } from "../contexts/ErrorContext.jsx";
+import banner2 from "../images/banner2.jpg"
 import { NavBar } from "../component/NavBar.jsx";
 import { CarInput } from "../component/CarInput.jsx";
 import { CountryInput } from "../component/CountryInput.jsx";
@@ -196,8 +197,11 @@ export function Admin({ BaseUrl }) {
         <div className="flex flex-col h-[800px] bg-white">
           <NavBar BaseUrl={BaseUrl}/>
           <div className="flex flex-col items-center gap-[20px]">
-            <div>
-              <h1 className="text-[50px] font-extrabold text-black drop-shadow-lg">
+            <div className='w-full h-[140px] p-[10px]'>
+              <img src={banner2} className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
+            </div>
+            <div className="w-full h-[200px] text-center pt-[0px] ">
+              <h1 className="text-[50px] drop-shadow-lg font-extrabold text-white drop-shadow-lg">
                  Admin DashBoard
               </h1>
             </div>

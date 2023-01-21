@@ -7,13 +7,11 @@ import Banner from "../images/Banner.jpg"
 
 
 export function Order({ BaseUrl }){
-    async function deleteMe(ele){
-        return
-    }
+    
     return(
         <>
         <div>
-            <NavBar BaseUrl={BaseUrl} />
+            <NavBar BaseUrl={BaseUrl}  />
             <OrderCars BaseUrl={BaseUrl} />
         </div>
         </>

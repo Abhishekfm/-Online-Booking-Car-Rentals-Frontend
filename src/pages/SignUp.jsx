@@ -36,7 +36,7 @@ export function SignUp({BaseUrl}){
             }else{
                 console.log(res);
                 setUser(res)
-                navigate("/home")
+                navigate("/")
                 toast.success("Account is Created")
             }
         } catch (error) {
@@ -56,7 +56,7 @@ export function SignUp({BaseUrl}){
                     <div>
                         <img className="w-[40px]" src={logo} alt="" />
                     </div>
-                    <h1 className="loginHead text-[40px]">Car Rental</h1>
+                    <Link className="loginHead text-[40px] cursor-pointer" to="/">Car Rental</Link>
                 </div>
                 <div className="relative">
                     <img className="absolute left-40 " src={tyreprint} alt="" />

@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useContext } from "react";
 
 export function LogIn({BaseUrl}){
-    const [user, setUser] = useContext(MyContext)
+    const [globalVariable, setGlobalVariable, user, setUser] = useContext(MyContext)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -35,7 +35,8 @@ export function LogIn({BaseUrl}){
             }else{
                 console.log(res);
                 setUser(res)
-                navigate("/home")
+                console.log(user);
+                navigate("/")
                 toast.success("Account is Created")
             }
         } catch (error) {
@@ -55,7 +56,7 @@ export function LogIn({BaseUrl}){
                     <div>
                         <img className="w-[40px]" src={logo} alt="" />
                     </div>
-                    <h1 className="loginHead text-[40px]">Car Rental</h1>
+                    <Link className="loginHead text-[40px] cursor-pointer" to="/">Car Rental</Link>
                 </div>
                 <div className="relative">
                     <img className="absolute left-40 " src={tyreprint} alt="" />
@@ -69,7 +70,7 @@ export function LogIn({BaseUrl}){
                     <input type="password" className="w-full text-lg focus:bg-[#F0ECCF] pl-2 bg-transparent" placeholder="Enter Your Password" onChange={(event)=>{setPassword(event.target.value)}} />
                 </div>
                 <button className="bg-[#3A4F7A] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] z-10 rounded-full text-lg h-[40px] w-full text-white" onClick={handleSubmit}>LOGIN</button>
-                <Link to="/">New User? Click To Register</Link>  
+                <Link to="/signup">New User? Click To Register</Link>  
             </div>
         </div>
         </>

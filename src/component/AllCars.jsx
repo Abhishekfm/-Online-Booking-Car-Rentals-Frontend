@@ -16,7 +16,7 @@ export function AllCars(props){
     const carData = props.carData
     const numberOfEntry = Number(props.totalEntry);
     const [numberOfPages, setNumberOfPages] = useState(0)
-    const [globalVariable, setGlobalVariable] = useContext(MyContext);
+    const [globalVariable, setGlobalVariable, carName, setCarName, carTotal, setCarTotal, carAvailable, setCarAvailable, carUrl, setCarUrl ] = useContext(MyContext);
     // const [clickMoreInfo, setMoreInfo] = useState(1)
     const [isVisibleId, setIsVisibleId] = useState(null);
     const navigate = useNavigate()
@@ -83,9 +83,9 @@ export function AllCars(props){
             console.log(error);
         }
     }
-    async function showOrderOfCar(carId){
+    async function showOrderOfCar(ele){
         try {
-            console.log(carId);
+            let carId = ele._id
             const res = await axios.get(`${props.BaseUrl}/admin/getordersofcar/${carId}`,
             { withCredentials: true }
             )
@@ -94,6 +94,10 @@ export function AllCars(props){
                 return
             }else{
                 console.log(res);
+                setCarName(ele.carName)
+                setCarTotal(ele.totalCars)
+                setCarAvailable(ele.numberOfCars)
+                setCarUrl(ele.url)
                 setGlobalVariable(res.data.orders)
                 navigate("/ordersofthiscar")
                 // props.reRendor()
@@ -108,13 +112,14 @@ export function AllCars(props){
                 {carData&&carData.map((ele)=>(
                     <div key={ele._id} className="flex w-full p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
                         <div className="flex w-1/2 gap-4">
-                            <div className="cursor-pointer" onClick={()=>{showOrderOfCar(ele._id)}} >
+                            <div className="cursor-pointer" onClick={()=>{showOrderOfCar(ele)}} >
                              <img className="h-[200px] w-[340px] object-cover" src={ele.url? ele.url :car} alt="" />
                             </div>
                             <div className="flex w-1/2 flex-row justify-between">
                                 <div className="flex flex-col gap-6">
                                     <h2 className="text-[30px] font-bold">{ele.carName}</h2>
                                     <h1 className="text-[24px] font-semibold">Available Cars: <span className="text-[#CD0404]">{ele.numberOfCars}</span></h1>
+                                    <h1 className="text-[24px] font-semibold">Total Cars: <span className="text-[#CD0404]">{ele.totalCars}</span></h1>
                                     <h2 onClick={()=>{showLocation(ele._id)}} className="text-[20px] cursor-pointer flex items-end">More Info <img className="w-[30px]" src={expand} alt="" /></h2>
                                     <div id={ele._id} className={isVisibleId === ele._id?"block":"hidden"}>
                                         <p className="text-[20px]">Country: {ele.carLocation.country}</p>
