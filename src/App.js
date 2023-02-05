@@ -6,6 +6,7 @@ import { Admin } from "./pages/Admin";
 import { Order } from "./pages/Order";
 import { Users } from "./pages/Users";
 import { OrdersOfThisCar } from "./pages/OrdersOfThisCar";
+import { AllOrder } from "./pages/AllOrder";
 import { Route, Routes} from "react-router-dom";
 import { MyContext } from './contexts/MyContext';
 import { useState } from "react";
@@ -29,6 +30,7 @@ export function App(){
                 <Route exact path="/order" element={<Order BaseUrl={BaseUrl}/>} />
                 <Route exact path="/users" element={<Users BaseUrl={BaseUrl}/>} />
                 <Route exact path="/ordersofthiscar" element={<OrdersOfThisCar BaseUrl={BaseUrl}/>} />
+                <Route exact path="/allorder" element={<AllOrder BaseUrl={BaseUrl}/>} />
             </Routes>
         </MyContext.Provider>
         </>

@@ -191,10 +191,10 @@ export function Admin({ BaseUrl }) {
     fetchData();
   }, [skipNo, totalEntriesInCarDb]);
   return (
-    <div>
+    <div className="w-full">
       <>
         <ToastContainer containerId={"toast1"} limit={1} />
-        <div className="flex flex-col h-[800px] bg-white">
+        <div className="flex flex-col w-full h-[800px] bg-white">
           <NavBar BaseUrl={BaseUrl}/>
           <div className="flex flex-col items-center gap-[20px]">
             <div className='w-full h-[140px] p-[10px]'>

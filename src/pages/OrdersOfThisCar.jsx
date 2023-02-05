@@ -27,6 +27,23 @@ export function OrdersOfThisCar(props){
             console.log(error);
         }
     }
+    useEffect(()=>{
+        const thisCar = JSON.parse(localStorage.getItem("thisCar"))
+        if(thisCar){
+            // const thisCar = {
+            //     carName: ele.carName,
+            //     totalCars: ele.totalCars,
+            //     numberOfCars: ele.numberOfCars,
+            //     url: ele.url,
+            //     allOrder: res.data.orders
+            // }
+            console.log(thisCar)
+            setTotalCars(thisCar.totalCars)
+            setCarTotal(thisCar.totalCars)
+            setGlobalVariable(thisCar.allOrder)
+            return
+        }
+    },[])
     useEffect(() => {
         async function makeCustomerName() {
             let customerNames = {};
@@ -37,6 +54,8 @@ export function OrdersOfThisCar(props){
                 }
                 await axios.get(`${BaseUrl}/admin/getname/${element}`,{ withCredentials: true }).then((res) => {
                         customerNames[element] = res.data.user.name;
+                        customerNames[`email${element}`] = res.data.user.email
+                        console.log(res.data.user)
                     });
             }
             if(globalVariable.length > 0){
@@ -85,23 +104,37 @@ export function OrdersOfThisCar(props){
             <div className="flex justify-center h-[300px] w-full">
                 <img src={carUrl?carUrl:car} className="object-fit" alt="" />
             </div>
-            <div className="flex justify-around border-2 border-slate-500">
+            {/* <div className="flex justify-around border-2 border-slate-500">
                 <h1 className="text-[27px] font-semibold w-1/4 text-center ">User</h1>
                 <h1 className="text-[27px] font-semibold border-r-2 border-l-2 w-1/4 text-center border-slate-500">StartDate</h1>
                 <h1 className="text-[27px] font-semibold  border-r-2 border-l-0 w-1/4 text-center border-slate-500">EndDate</h1>
                 <h1 className="text-[27px] font-semibold  w-1/4 text-center">Delete Order</h1>
-            </div>
-            {Object.keys(customerNames).length !== 0 &&globalVariable !== "initial value"&&globalVariable.map((ele)=>(
-                <div key={ele._id} className="flex w-full border-t-0 h-[60px] border-2 border-slate-500 justify-between items-center font-semibold text-[18px] flex-row">
-                    {console.log(customerNames[ele.userId])}
-                    <h2 className="text-[20px] font-semibold h-full w-1/4 text-center ">{customerNames[ele.userId]}</h2>
-                    <h2 className="text-[20px] font-semibold h-full border-r-2 border-l-2 w-1/4 text-center border-slate-500">{ele.orderDate.startDate}</h2>
-                    <h2 className="text-[20px] font-semibold  h-full border-r-2 border-l-0 w-1/4 text-center border-slate-500">{ele.orderDate.endDate}</h2>
-                    <div className="text-[20px] font-semibold h-full  w-1/4 text-center">
-                        <button onClick={()=>{deleteThisOrder(ele.carId, ele._id)}} className="px-4 py-2 bg-[#CD0404] m-2 rounded-md font-semibold text-[#fff]">Delete Me</button>
-                    </div>
-                </div>
-            ))}
+            </div> */}
+            <table class="table-auto w-full text-left text-[18px]">
+                    <thead>
+                        <tr class="bg-gray-900 text-white">
+                            <th class="px-4 py-2 uppercase">User</th>
+                            <th class="px-4 py-2 uppercase">Email</th>
+                            <th class="px-4 py-2 uppercase">StartDate</th>
+                            <th class="px-4 py-2 uppercase">EndDate</th>
+                            <th class="px-4 py-2 uppercase">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Object.keys(customerNames).length !== 0 &&globalVariable !== "initial value"&&globalVariable.map((ele)=>(
+                                <tr key={ele._id} className="bg-gray-100 font-semibold">
+                                    {console.log(customerNames[ele.userId])}
+                                    <td className="border px-4 py-2 uppercase">{customerNames[ele.userId]}</td>
+                                    <td className="border px-4 py-2">{customerNames[`email${ele.userId}`]}</td>
+                                    <td className="border px-4 py-2 uppercase">{ele.orderDate.startDate}</td>
+                                    <td className="border px-4 py-2 uppercase">{ele.orderDate.endDate}</td>
+                                    {ele.stage === "PENDING"?<td class="border px-4 py-2 uppercase">
+                                        <button onClick={()=>{deleteThisOrder(ele.carId, ele._id)}} className=" w-[100px] py-2 bg-[#CD0404] m-2 rounded-md font-semibold text-[#fff]">Delete Me</button>
+                                    </td>:ele.stage === "ONGOING"?<h2 className="text-[20px] font-semibold">Order is <span className="text-[24px] font-bold uppercase text-[#5F9DF7]">on going</span></h2>:<h2 className="text-[20px] font-semibold">Order is <span className="text-[24px] font-bold uppercase text-[#285430]">Successfull</span></h2>}
+                                </tr>
+                                ))}
+                    </tbody>
+            </table>
 
         </div>
         </>

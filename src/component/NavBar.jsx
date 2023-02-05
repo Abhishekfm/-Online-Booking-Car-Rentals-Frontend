@@ -47,6 +47,7 @@ export function NavBar(props){
               {myRole === "ADMIN" || myRole === "USER"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/order" >Order</Link>:""}
               {myRole === "ADMIN"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/users" >Users</Link>:""}
               {myRole === "ADMIN"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/admin" >Admin Controller</Link>:""}
+              {myRole === "ADMIN"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/allorder" >All Order</Link>:""}
               {myRole === "ADMIN" || myRole === "USER"?<Link onClick={()=>{logMeOut()}} className="mx-4 text-base font-medium tracking-wide uppercase" to="/login" >LogOut</Link>:<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/login" >LogIn</Link>}
               {myRole === "NOROLE"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/signup" >SIGNUP</Link>:""}
             </div>

@@ -114,6 +114,14 @@ export function AllCars(props){
                 setCarAvailable(ele.numberOfCars)
                 setCarUrl(ele.url)
                 setGlobalVariable(res.data.orders)
+                const thisCar = {
+                    carName: ele.carName,
+                    totalCars: ele.totalCars,
+                    numberOfCars: ele.numberOfCars,
+                    url: ele.url,
+                    allOrder: res.data.orders
+                }
+                localStorage.setItem("thisCar", JSON.stringify(thisCar))
                 navigate("/ordersofthiscar")
                 // props.reRendor()
             }
