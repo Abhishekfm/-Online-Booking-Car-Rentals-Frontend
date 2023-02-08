@@ -18,7 +18,7 @@ export function App(){
     const [carTotal, setCarTotal] = useState("")
     const [carAvailable, setCarAvailable] = useState("")
     const [ carUrl, setCarUrl] = useState("")
-    const BaseUrl = "https://online-booking-car-rentals-backend.vercel.app"
+    const BaseUrl = process.env.BASE_URL
     return(
         <>
         <MyContext.Provider value={[globalVariable, setGlobalVariable, user, setUser, carName, setCarName, carTotal, setCarTotal, carAvailable, setCarAvailable, carUrl, setCarUrl]}>
