@@ -3,7 +3,6 @@ import car from "../images/car.png"
 import axios from "axios";
 import { useState } from "react";
 import { isLux } from "../utils";
-import pcar from "../images/pcar.png"
 import pcar2 from "../images/pcar2.png"
 // import ReactModal from "react-modal";
 
