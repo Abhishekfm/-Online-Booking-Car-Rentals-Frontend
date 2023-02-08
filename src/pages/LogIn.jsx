@@ -24,6 +24,7 @@ export function LogIn({BaseUrl}){
                 toast("Provide All Details")
                 return
             }
+            console.log(BaseUrl)
             const res = await axios.post(`${BaseUrl}/auth/login`,{
                 email,
                 password
