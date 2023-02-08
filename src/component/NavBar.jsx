@@ -13,7 +13,7 @@ export function NavBar(props){
     async function logMeOut(){
       try {
         const res = await axios.get(`${props.BaseUrl}/auth/logout`,
-        { withCredentials: true });
+        { credentials: "include"});
         if(!res){
           return
         }else{
