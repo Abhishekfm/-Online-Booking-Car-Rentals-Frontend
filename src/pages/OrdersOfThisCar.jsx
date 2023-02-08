@@ -129,7 +129,7 @@ export function OrdersOfThisCar(props){
                                     <td className="border px-4 py-2 uppercase">{ele.orderDate.startDate}</td>
                                     <td className="border px-4 py-2 uppercase">{ele.orderDate.endDate}</td>
                                     {ele.stage === "PENDING"?<td class="border px-4 py-2 uppercase">
-                                        <button onClick={()=>{deleteThisOrder(ele.carId, ele._id)}} className=" w-[100px] py-2 bg-[#CD0404] m-2 rounded-md font-semibold text-[#fff]">Delete Me</button>
+                                        <button onClick={()=>{deleteThisOrder(ele.carId, ele._id)}} className=" w-[100px] py-2 bg-[#CD0404] rounded-md font-semibold text-[#fff]">Delete Me</button>
                                     </td>:ele.stage === "ONGOING"?<h2 className="text-[20px] font-semibold">Order is <span className="text-[24px] font-bold uppercase text-[#5F9DF7]">on going</span></h2>:<h2 className="text-[20px] font-semibold">Order is <span className="text-[24px] font-bold uppercase text-[#285430]">Successfull</span></h2>}
                                 </tr>
                                 ))}

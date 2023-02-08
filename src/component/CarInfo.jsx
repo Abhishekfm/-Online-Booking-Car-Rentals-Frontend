@@ -2,6 +2,9 @@ import React from "react";
 
 export function CarInfo(props){
     const calculateDifference = (start, end) => {
+        if(!start){
+            return
+        }
         const difference = new Date(end) - new Date(start);
         let days = Math.floor(difference / (1000 * 60 * 60 * 24));
         let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -12,10 +15,10 @@ export function CarInfo(props){
             hours = 0
         }
         return `${days} days And ${hours} hours`;
-      };
+    };
     return(
         <>
-        <div className="flex rounded-[20px] h-max flex-col ml-8 m-2 bg-slate-100 gap-4 p-4 w-[350px]">
+        <div className="flex rounded-[20px] h-max flex-col 2md:ml-8 m-2 bg-slate-100 gap-4 p-4 w-full 2md:w-[350px]">
             <h1 className="text-[20px] font-semibold">Summary</h1>
             <div className="flex flex-col gap-2 p-2 border-dashed border-b-2 border-slate-400">
                 <h1 className="text-[16px] text-slate-400 uppercase">Service Time</h1>
@@ -33,9 +36,9 @@ export function CarInfo(props){
                         </thead>
                         <tbody>
                             <tr class="bg-gray-100 text-[14px] font-semibold">
-                                <td class="border px-4 py-2 uppercase">{props.country}</td>
-                                <td class="border px-4 py-2 uppercase">{props.state}</td>
-                                <td class="border px-4 py-2 uppercase">{props.city}</td>
+                                <td class="border px-4 py-2 uppercase">{props.country || localStorage.getItem("country")|| ""}</td>
+                                <td class="border px-4 py-2 uppercase">{props.state || localStorage.getItem("state")|| ""}</td>
+                                <td class="border px-4 py-2 uppercase">{props.city || localStorage.getItem("city")|| ""}</td>
                             </tr>
                         </tbody>
                 </table>

@@ -6,6 +6,7 @@ import car from "../images/car.png"
 import expand from "../images/expand.png"
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { AllOrdersComp } from "../component/AllOrdersComp";
 
 export function Users(props){
     const [showEmpty, setShowEmpty] = useState(false)
@@ -14,7 +15,9 @@ export function Users(props){
     const [customerEmail, setCustomerEmail] = useState("")
     const [customerRole, setCustomerRole] = useState("")
     const [skipNo, setSkipNo] = useState(0)
+    const [skipNo2, setSkipNo2] = useState(0)
     const [numberOfPages, setNumberOfPages] = useState(0)
+    const [numberOfPages2, setNumberOfPages2] = useState(0)
     const [clickedUser, setClickedUser] = useState("")
     const [orderHistory, setOrderHistory] = useState([])
     const [isVisibleId, setIsVisibleId] = useState(null);
@@ -36,10 +39,13 @@ export function Users(props){
     async function setUserAndOrder(userId, name, email, role, deleteOrderCall){
         try {
             if(clickedUser === userId && deleteOrderCall !== true){
+                console.log(userId)
+                console.log("No executed")
                 setClickedUser(null)
                 return
             }
-            const res = await axios.get(`${props.BaseUrl}/admin/getorderbyid/${userId}`,{withCredentials:true})
+            console.log("Yes Executed")
+            const res = await axios.get(`${props.BaseUrl}/admin/getorderbyid/${userId}/${skipNo2}`,{withCredentials:true})
             if(!res){
                 return
             }else{
@@ -47,12 +53,14 @@ export function Users(props){
                 setCustomerName(name)
                 setCustomerEmail(email)
                 setCustomerRole(role)
-                if(res.data.allOrder.length <= 0){
+                if(res.data.allFiveOrder.length <= 0){
                     setShowEmpty(true)
                 }else{
                     setShowEmpty(false)
                 }
-                setOrderHistory(res.data.allOrder)
+                let page = Math.ceil(Number(res.data.totalLength)/5)
+                setNumberOfPages2(page)
+                setOrderHistory(res.data.allFiveOrder)
                 setClickedUser(userId)
             }
         } catch (error) {
@@ -62,6 +70,9 @@ export function Users(props){
     useEffect(()=>{
         getAllUser()
     },[skipNo])
+    useEffect(()=>{
+        setUserAndOrder(clickedUser, customerName, customerEmail, customerRole, true)
+    },[skipNo2])
     async function showLocation(carId){
         if(isVisibleId === carId){
             setIsVisibleId(null)
@@ -104,33 +115,35 @@ export function Users(props){
         <>
         <NavBar BaseUrl={props.BaseUrl}/>
         <div className='w-full h-[0px] p-[10px]'>
-              <img src={banner3} className="w-full rounded-[20px] h-[300px] object-cover" alt="" />
+              <img src={banner3} className="w-full rounded-[10px] h-[200px] md:h-[240px] object-cover" alt="" />
         </div>
-        <div className="w-full h-[300px] text-center pt-[0px] ">
-          <h1 className="text-[50px] drop-shadow-lg font-extrabold text-white drop-shadow-lg">
+        <div className="w-full h-[180px] md:h-[220px] text-center pt-[0px] ">
+          <h1 className="text-[30px] md:text-[50px] drop-shadow-lg font-extrabold text-white drop-shadow-lg">
              ALL USERS OF DRIVEME
           </h1>
         </div>
         <div className="flex flex-col p-4">
-            <div className="flex flex-row justify-around">
-                <h1 className="w-1/3 text-[25px] font-semibold text-center pl-4 border-2 border-slate-400">Name</h1>
-                <h1 className="w-1/3 text-[25px] font-semibold text-center pl-4 border-2 border-l-0 border-slate-400">Email</h1>
-                <h1 className="w-1/3 text-[25px] font-semibold text-center pl-4 border-2 border-l-0 border-slate-400">Role</h1>
-            </div>
-            <div className="h-[150px]">
-            {users && users.map((ele)=>(
-                <div className="">
-                    <div onClick={()=>{setUserAndOrder(ele._id, ele.name, ele.email, ele.role, false)}} className="flex flex-row translate-z-1 hover:translate-x-1 cursor-pointer justify-around">
-                        <h1 className="w-1/3 pl-4 border-2 font-medium border-t-0 border-slate-400">{ele.name}</h1>
-                        <h1 className="w-1/3 pl-4 border-2 font-medium border-t-0 border-l-0 border-slate-400">{ele.email}</h1>
-                        <h1 className="w-1/3 pl-4 border-2 font-medium border-t-0 border-l-0 border-slate-400">{ele.role}</h1>
-                    </div>
-                </div>
-            ))}
-            </div>
+            <table class="table-auto text-left text-[14px] sm:text-[18px]">
+                <thead>
+                    <tr class="bg-gray-900 text-white">
+                        <th class="px-1 py-1 2md:px-4 2md:py-2">Name</th>
+                        <th class="px-1 py-1 2md:px-4 2md:py-2">Email</th>
+                        <th class="px-1 py-1 2md:px-4 2md:py-2">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users && users.map((ele)=>(
+                    <tr class="bg-gray-100 font-semibold hover:bg-gray-300 active:bg-[#000]" onClick={()=>{setUserAndOrder(ele._id, ele.name, ele.email, ele.role, false)}}>
+                        <td class="border px-1 py-1 2md:px-4 2md:py-2 uppercase">{ele.name}</td>
+                        <td class="border px-1 py-1 2md:px-4 2md:py-2 ">{ele.email}</td>
+                        <td class="border px-1 py-1 2md:px-4 2md:py-2 uppercase">{ele.role}</td>
+                    </tr>
+                    ))}
+                </tbody>
+            </table>
             <PageNumber setSkip={setSkipNo} pages={numberOfPages}/>
-            <div className={clickedUser?"block flex flex-row":"hidden"}>
-                <div className="flex rounded-[20px] h-[440px] flex-col ml-2 m-2 bg-slate-100 gap-4 p-4 w-[300px]">
+            <div className={clickedUser?"block flex flex-row flex-wrap 2md:flex-nowrap ":"hidden"}>
+                <div className="flex rounded-[20px] h-[440px] flex-col ml-2 m-2 bg-slate-100 gap-4 p-4 w-full md:w-[300px]">
                     <h1 className="text-lg text-slate-400 uppercase">Name</h1>
                     <div className="flex flex-col gap-2 p-2 border-dashed border-b-2 border-slate-400">
                         <h1 className="text-[16px] uppercase">{customerName}</h1>
@@ -149,7 +162,9 @@ export function Users(props){
                     </div>
                 </div>
                 <div className={!showEmpty?"flex w-full flex-col":"hidden"}>
-                    {orderHistory && orderHistory.map((ele)=>(
+                    <AllOrdersComp orderHistory={orderHistory} getOrder={()=>{setUserAndOrder(clickedUser, customerName, customerEmail, customerRole, true)}} BaseUrl={props.BaseUrl} />
+                    <PageNumber setSkip={setSkipNo2} pages={numberOfPages2}/>
+                    {/* {orderHistory && orderHistory.map((ele)=>(
                         <div key={ele._id} className="flex w-full p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
                         <div className="flex gap-8">
                             <div className="cursor-pointer" >
@@ -178,7 +193,7 @@ export function Users(props){
                             </div>
                         </div>
                     </div>
-                    ))}
+                    ))} */}
                 </div>
                 <div className={showEmpty?"block w-full text-center":"hidden"}>
                     <h1 className="text-[35px] font-bold">NO ORDERS!</h1>

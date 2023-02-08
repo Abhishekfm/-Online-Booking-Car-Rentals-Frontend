@@ -76,12 +76,17 @@ export function AllOrder(props){
 
     return(
         <>
+        <div className="w-full overflow-x-hidden">
         <NavBar BaseUrl={props.BaseUrl}/>
-        <div className='w-full p-[10px]'>
-          <img src="https://images.pexels.com/photos/6169033/pexels-photo-6169033.jpeg?auto=compress&cs=tinysrgb&w=600" className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
+        <div className='w-full p-[10px] relative text-center'>
+            <div className="text-center">
+                <h1 className="text-[30px] md:text-[50px] top-[80px] md:top-[100px] w-full absolute drop-shadow-lg font-extrabold text-white drop-shadow-lg">ALL ORDERS</h1>  
+            </div>
+            <img src="https://images.pexels.com/photos/6169033/pexels-photo-6169033.jpeg?&cs=tinysrgb" className="w-full rounded-[20px] h-[200px] md:h-[350px] object-cover" alt="" />
         </div>
         <AllOrdersComp orderHistory={orderHistory} getOrder={getOrder} BaseUrl={props.BaseUrl} />
         <PageNumber setSkip={setSkipNo} pages={numberOfPages}/>
+        </div>
         </>
     )
 }

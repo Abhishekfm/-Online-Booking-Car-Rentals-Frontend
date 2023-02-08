@@ -47,7 +47,7 @@ export function SignUp({BaseUrl}){
     return(
         <>
         <ToastContainer />
-        <div className="flex flex-row bg-[#000] overflow-hidden h-[713px] z-10 relative w-full justify-center items-center">
+        <div className="flex flex-row bg-[#000] overflow-hidden h-screen z-10 sm:flex-nowrap flex-wrap relative w-full justify-center items-start sm:items-center">
             <div className="w-1/2">
                 <img className="" src={px5} alt="" srcset="" />
             </div>

@@ -197,16 +197,16 @@ export function Admin({ BaseUrl }) {
         <div className="flex flex-col w-full h-[800px] bg-white">
           <NavBar BaseUrl={BaseUrl}/>
           <div className="flex flex-col items-center gap-[20px]">
-            <div className='w-full h-[140px] p-[10px]'>
-              <img src={banner2} className="w-full rounded-[20px] h-[350px] object-cover" alt="" />
+            <div className='w-full h-[70px] sm:h-[120px] p-[10px]'>
+              <img src={banner2} className="w-full rounded-[10px] 2md:rounded-[20px] h-[200px] sm:h-[300px] 2md:h-[350px] object-cover" alt="" />
             </div>
-            <div className="w-full h-[200px] text-center pt-[0px] ">
-              <h1 className="text-[50px] drop-shadow-lg font-extrabold text-white drop-shadow-lg">
+            <div className="w-full h-[100px] sm:h-[170px] 2md:h-[230px] text-center pt-[0px] ">
+              <h1 className="text-[40px] 2md:text-[50px] drop-shadow-lg font-extrabold text-white drop-shadow-lg">
                  Admin DashBoard
               </h1>
             </div>
             <div className="flex flex-row justify-around w-full gap-8 flex-wrap items-end">
-              <div className="flex flex-col relative">
+              <div className="flex flex-col w-[150px] md:w-[220px] relative">
                 <CountryInput
                   onInputChange={handleInputChange}
                   countryCode={countryCodeValue}
@@ -218,7 +218,7 @@ export function Admin({ BaseUrl }) {
                 {/* {countryError?
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">Country Cant be Empty</label>:""} */}
               </div>
-              <div className="flex flex-col relative">
+              <div className="flex w-[150px] md:w-[220px] flex-col relative">
                 {/* <h2>Your State</h2> */}
                 <StateInput
                   key={countryNameValue}
@@ -231,7 +231,7 @@ export function Admin({ BaseUrl }) {
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">State Cant be Empty</label>:""}
                         */}
               </div>
-              <div className="flex flex-col relative">
+              <div className="flex w-[150px] md:w-[220px] flex-col relative">
                 <CityInput
                   key={stateNameValue}
                   cityData={citiesValue}
@@ -242,22 +242,22 @@ export function Admin({ BaseUrl }) {
                 {/* {cityError?
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">State Cant be Empty</label>:""} */}
               </div>
-              <div className="flex flex-col relative">
+              <div className="flex flex-col w-[150px] md:w-[220px] relative">
                 <CarInput 
                 onCarChange={setCarName}
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-[150px] md:w-[220px]">
                 <label className='text-lg font-semibold' htmlFor="noOfCars">Number Of Cars:</label>
                 <input id="noOfCars" className="text-[20px] rounded-md p-2 focus:shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-[#ECE8DD] focus:border-0 focus:outline-0" value={numberOfCars} onChange={(e)=>{updateNumberOfCar(e.target.value)}} type="number" min={1} max={100} placeholder="Number Of Cars" />
               </div>
-              <div className="flex flex-row items-end">
+              <div className="flex flex-row gap-4 md:gap-0 items-end">
                 <div>
                 <label className="text-lg font-semibold " htmlFor="slctfile">Select Photo of car:</label>
                 <input
                     id="slctfile"
                     type="file"
-                    className="block w-full bg-[#ECE8DD] file:text-xl file:font-semibold text-lg file:decoration-none text-gray-900 border h-[50px] file:h-full rounded-lg cursor-pointer file:text-white file:outline-none file:bg-slate-600 file:border-slate-600 file:placeholder-white" 
+                    className="block w-[200px] md:w-full bg-[#ECE8DD] file:text-xl file:font-semibold text-lg file:decoration-none text-gray-900 border h-[50px] file:h-full rounded-lg cursor-pointer file:text-white file:outline-none file:bg-slate-600 file:border-slate-600 file:placeholder-white" 
                     // aria-describedby="file_input_help" 
                     onChange={(e) => {
                       setImage(e.target.files[0]);
@@ -266,7 +266,7 @@ export function Admin({ BaseUrl }) {
                 </div>
                 <div>
                 <button className="bg-[#3A4F7A] h-[50px] font-bold px-8 rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] z-10 text-lg text-white" onClick={showResults}>
-                  Upload
+                  ADD CAR
                 </button>
               </div>
               </div>

@@ -47,9 +47,9 @@ export function LogIn({BaseUrl}){
     return(
         <>
         <ToastContainer/>
-        <div className="flex flex-row overflow-hidden bg-[#1f1f1f] h-[713px] z-10 relative w-full justify-around items-center">
+        <div className="flex flex-row overflow-hidden bg-[#1f1f1f] h-screen sm:flex-nowrap flex-wrap z-10 relative w-full justify-around sm:items-center">
             <div className="w-1/3">
-                <img className="" src={tyre} alt="" srcset="" />
+                <img className="" src={tyre} alt="" />
             </div>
             <div className="flex flex-col w-[450px] h-[500px] bg-[#F0ECCF] rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-8 justify-around">
                 <div className="flex flex-row items-center">

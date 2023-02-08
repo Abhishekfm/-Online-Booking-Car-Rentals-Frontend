@@ -37,8 +37,8 @@ export function PageNumber(props){
     return(
         <>
         <div className="text-center">
-            <div className="inline-flex rounded-xl border border-[#e4e4e4] bg-white p-4">
-                <ul className="-mx-[6px] flex items-center">
+            <div className="inline-flex rounded-xl border border-[#e4e4e4] bg-white p-4 flex-nowrap md:flex-wrap">
+                <ul className="-mx-[6px] flex md:flex-nowrap gap-2 md:gap-0 flex-wrap items-center">
                 <li className="px-[6px]">
                     <a
                     onClick={handleLeft}
@@ -59,7 +59,7 @@ export function PageNumber(props){
                     </span>
                     </a>
                 </li>
-                {pageNumbers && pageNumbers.map((pageNumber) => (<li className="px-[6px]">
+                {pageNumbers && pageNumbers.map((pageNumber) => (<li className="px-[2px] md:px-[6px]">
                     <a
                     onClick={(e)=>{selectedPage(pageNumber)}}
                     key={pageNumber}

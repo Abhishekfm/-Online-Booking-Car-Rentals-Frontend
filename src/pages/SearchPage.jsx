@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { StateInput } from "../component/StateInput.jsx";
 import axios from "axios";
+import { PageNumber } from "../component/PageNumber";
 
 export function SearchPage({ BaseUrl }) {
   const [countryCodeValue, setCountryCodeValue] = useState("");
@@ -24,6 +25,9 @@ export function SearchPage({ BaseUrl }) {
   const [endDate, setEndDate] = useState("");
   const [carData, setCarData] = useState([]);
   const [showEmpty, setShowEmpty] = useState(false);
+  const [skipNo2, setSkipNo2] = useState(0)
+  const [numberOfPages2, setNumberOfPages2] = useState(0)
+  const [reloaded, setReloaded] = useState(true);
   //   const { countryError } = useContext(ErrorContext);
   //   const { setCountryError } = useContext(ErrorContext);
   //   const { setStateError } = useContext(ErrorContext);
@@ -74,7 +78,7 @@ export function SearchPage({ BaseUrl }) {
         // setCityError(true)
         // setStartError(true)
         // setEndError(true)
-        toast.error(`Provide All search Details country:${countryNameValue},state:${stateNameValue},city:${cityName},Start Date:${startDate},End Date:${endDate}`);
+        // toast.error(`Provide All search Details`);
 
         return;
       }
@@ -86,20 +90,24 @@ export function SearchPage({ BaseUrl }) {
           city: cityName,
           startDate: startDate,
           endDate: endDate,
+          skipNo2
         },
         { withCredentials: true }
       );
       if (!res) {
         return;
       } else {
-        console.log(res.data.allCar);
-        if (res.data.allCar.length <= 0) {
+        console.log(res.data.allFiveCar);
+        setReloaded(false)
+        if (res.data.allFiveCar.length <= 0) {
           setShowEmpty(true);
         } else {
           setShowEmpty(false);
         }
-        setCarData(res.data.allCar);
-        localStorage.setItem('carList', JSON.stringify(res.data.allCar));
+        let page = Math.ceil(Number(res.data.totalLength)/5)
+        setNumberOfPages2(page)
+        setCarData(res.data.allFiveCar);
+        localStorage.setItem('carList', JSON.stringify(res.data.allFiveCar));
       }
     } catch (error) {
       console.log(error);
@@ -196,6 +204,11 @@ export function SearchPage({ BaseUrl }) {
         if(cars){
           setCarData(cars);
         }
+        // if(cars && !storedCountryName && !storedStateName && !storedCity){
+        //   console.log("pta nhi")
+        //   setShowEmpty(true);
+        //   return
+        // }
         if (storedStart && new Date(storedStart) > new Date()) {
           // count += 1;
           console.log("this one")
@@ -230,6 +243,10 @@ export function SearchPage({ BaseUrl }) {
       showResultsIfAllDataExists();
   }, []);
 
+  useEffect(()=>{
+    showResults()
+  },[skipNo2])
+
 
   useEffect(() => {
     // Store the values in local storage when they change
@@ -248,20 +265,20 @@ export function SearchPage({ BaseUrl }) {
         <div className="flex flex-col h-[800px] bg-[#Ffffff]">
           <NavBar BaseUrl={BaseUrl} />
           <div className="flex flex-col items-center gap-[20px]">
-            <div className="w-full h-[110px] p-[10px]">
+            <div className="w-full h-[70px] sm:h-[110px] p-[10px]">
               <img
                 src={Banner}
-                className="w-full rounded-[20px] h-[350px] object-cover"
+                className="w-full rounded-[10px] 2md:rounded-[20px] h-[200px] sm:h-[300px] 2md:h-[350px] object-cover"
                 alt=""
               />
             </div>
-            <div className="w-full h-[230px] text-center pt-[10px]">
-              <h1 className="text-[50px] font-extrabold text-slate-800 drop-shadow-lg">
+            <div className="w-full h-[100px] sm:h-[170px] 2md:h-[230px] text-center md:pt-[10px]">
+              <h1 className="text-[40px] 2md:text-[50px] uppercase font-extrabold text-slate-800 drop-shadow-lg">
                 Search To <span className="text-slate-800">Rent</span> A Car
               </h1>
             </div>
-            <div className="flex flex-row justify-around w-full items-end">
-              <div className="flex flex-col relative">
+            <div className="flex flex-row flex-wrap gap-4 justify-around w-full items-end">
+              <div className="flex w-[150px] md:w-[220px] flex-col relative">
                 <CountryInput
                   onInputChange={handleInputChange}
                   countryCode={countryCodeValue}
@@ -273,7 +290,7 @@ export function SearchPage({ BaseUrl }) {
                 {/* {countryError?
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">Country Cant be Empty</label>:""} */}
               </div>
-              <div className="flex flex-col relative">
+              <div className="flex flex-col w-[150px] md:w-[220px] relative">
                 {/* <h2>Your State</h2> */}
                 <StateInput
                   key={countryNameValue}
@@ -286,7 +303,7 @@ export function SearchPage({ BaseUrl }) {
                             <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">State Cant be Empty</label>:""}
                         */}
               </div>
-              <div className="flex flex-col relative">
+              <div className="flex w-[150px] md:w-[220px] flex-col relative">
                 <CityInput
                   key={stateNameValue}
                   cityData={citiesValue}
@@ -311,7 +328,7 @@ export function SearchPage({ BaseUrl }) {
                 </button>
               </div>
             </div>
-            <div className="w-full mt-[100px] flex flex-row">
+            <div className="w-full mt-[40px] 2md:mt-[100px] flex flex-wrap 2md:flex-nowrap flex-row">
               <CarInfo country={countryNameValue}
                 state={stateNameValue}
                 city={cityName}
@@ -328,6 +345,8 @@ export function SearchPage({ BaseUrl }) {
                 carData={carData}
               />
             </div>
+            {!reloaded?<PageNumber setSkip={setSkipNo2} pages={numberOfPages2}/>:
+            <h2 className="text-[24px] text-slate-500">Kindly Please Search To Find All Results</h2> }
           </div>
         </div>
       </>
