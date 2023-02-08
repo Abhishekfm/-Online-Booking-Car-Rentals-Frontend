@@ -273,7 +273,7 @@ export function SearchPage({ BaseUrl }) {
               />
             </div>
             <div className="w-full h-[100px] sm:h-[170px] 2md:h-[230px] text-center md:pt-[10px]">
-              <h1 className="text-[40px] 2md:text-[50px] uppercase font-extrabold text-slate-800 drop-shadow-lg">
+              <h1 className="text-[30px] 2md:text-[50px] uppercase font-extrabold text-slate-800 drop-shadow-lg">
                 Search To <span className="text-slate-800">Rent</span> A Car
               </h1>
             </div>

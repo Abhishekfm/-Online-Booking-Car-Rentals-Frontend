@@ -198,7 +198,7 @@ export function CarList(props){
     return(
         <div  className={modalIsOpen ? "flex w-full gap-4 m-4 flex-col" : "flex w-full gap-4 m-4 flex-col"}>
         {carData&&carData.map((ele)=>(
-            <div className="flex w-full p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
+            <div className="flex w-full md:p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
                 <div className="">
                     {console.log(ele.url)}
                  <img className="md:h-[200px] h-[150px] w-[250px] md:w-[280px] lg:w-[340px] object-contain" src={ele.url? ele.url :isLux(ele.carName)?pcar2:car} alt="" />
