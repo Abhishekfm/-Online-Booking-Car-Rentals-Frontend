@@ -12,7 +12,7 @@ export function AllOrder(props){
     const [orderHistory, setOrderHistory] = useState([])
     async function getOrder(){
         try {
-            const res = await axios.post(`${props.BaseUrl}/admin/showorderdb`, { skipNo }, { withCredentials:true })
+            const res = await axios.post(`${props.BaseUrl}/admin/showorderdb`, { skipNo }, { credentials: "include"})
             if(!res){
                 return
             } else{
@@ -27,7 +27,7 @@ export function AllOrder(props){
     }
     async function getSuccessOrder(){
         try {
-            const res = await axios.post(`${props.BaseUrl}/admin/success/orderdb`, { skipNo }, { withCredentials:true })
+            const res = await axios.post(`${props.BaseUrl}/admin/success/orderdb`, { skipNo }, { credentials: "include"})
             if(!res){
                 return
             } else{
@@ -42,7 +42,7 @@ export function AllOrder(props){
     }
     async function getOrder(){
         try {
-            const res = await axios.post(`${props.BaseUrl}/admin/showorderdb`, { skipNo }, { withCredentials:true })
+            const res = await axios.post(`${props.BaseUrl}/admin/showorderdb`, { skipNo }, { credentials: "include"})
             if(!res){
                 return
             } else{
@@ -57,7 +57,7 @@ export function AllOrder(props){
     }
     async function getOrder(){
         try {
-            const res = await axios.post(`${props.BaseUrl}/admin/showorderdb`, { skipNo }, { withCredentials:true })
+            const res = await axios.post(`${props.BaseUrl}/admin/showorderdb`, { skipNo }, { credentials: "include"})
             if(!res){
                 return
             } else{

@@ -92,7 +92,7 @@ export function SearchPage({ BaseUrl }) {
           endDate: endDate,
           skipNo2
         },
-        { withCredentials: true }
+        { credentials: "include"}
       );
       if (!res) {
         return;

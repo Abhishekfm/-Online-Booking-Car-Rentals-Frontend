@@ -115,7 +115,7 @@ export function Admin({ BaseUrl }) {
             city: cityName},
             numberOfCars
           },
-          { withCredentials: true }
+          { credentials: "include"}
         );
       }else{
         res = await axios.post(
@@ -128,7 +128,7 @@ export function Admin({ BaseUrl }) {
             numberOfCars,
             url
           },
-          { withCredentials: true }
+          { credentials: "include"}
         );
       }
       if (!res) {
@@ -150,7 +150,7 @@ export function Admin({ BaseUrl }) {
         {
           skipNo
         },
-        { withCredentials: true }
+        { credentials: "include"}
       );
       if(!res){
         return
@@ -174,7 +174,7 @@ export function Admin({ BaseUrl }) {
             {
               skipNo
             },
-            { withCredentials: true }
+            { credentials: "include"}
           );
           if(!res){
             return

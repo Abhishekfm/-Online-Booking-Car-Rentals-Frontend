@@ -28,7 +28,7 @@ export function SignUp({BaseUrl}){
                 name,
                 email,
                 password
-            },{withCredentials:true})
+            },{ credentials: "include"})
             if(!res){
                 toast.error("Something Went Wrong")
                 console.log(res);

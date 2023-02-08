@@ -27,7 +27,7 @@ export function LogIn({BaseUrl}){
             const res = await axios.post(`${BaseUrl}/auth/login`,{
                 email,
                 password
-            },{withCredentials:true})
+            }, { credentials: "include"})
             if(!res){
                 toast.error("Something Went Wrong")
                 console.log(res);
