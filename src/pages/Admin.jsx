@@ -79,6 +79,7 @@ export function Admin({ BaseUrl }) {
       .then((response) => response.json())
       .then((data) => {
         url = data.url;
+        setUrl(url)
         console.log(data);
       })
       .catch((err) => {
