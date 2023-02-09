@@ -28,7 +28,7 @@ export function MyForm({onInputChange}) {
   }
 
   return (
-    <form className='w-full flex gap-4 md:gap-4'>
+    <form className='md:w-full flex gap-4 md:gap-4 flex-wrap md:flex-nowrap'>
       <div className='flex flex-col w-[150px] md:w-[220px]'>
       <label className='text-lg font-semibold' htmlFor="start-date">Start Date:</label>
       <input 
