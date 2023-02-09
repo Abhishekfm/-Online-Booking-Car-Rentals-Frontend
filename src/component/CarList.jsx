@@ -201,11 +201,12 @@ export function CarList(props){
         <>
         <ToastContainer/>
         <div  className={modalIsOpen ? "flex w-full gap-4 m-4 flex-col" : "flex w-full gap-4 m-4 flex-col"}>
+        <div className="w-screen flex flex-col">
         {carData&&carData.map((ele)=>(
             <div className="flex w-full md:p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
                 <div className="">
                     {console.log(ele.url)}
-                 <img className="md:h-[200px] h-[150px] w-[250px] md:w-[280px] lg:w-[340px] object-contain" src={ele.url? ele.url :isLux(ele.carName)?pcar2:car} alt="" />
+                 <img className="md:h-[200px] h-[150px] w-[210px] md:w-[280px] lg:w-[340px] object-contain" src={ele.url? ele.url :isLux(ele.carName)?pcar2:car} alt="" />
                 </div>
                 <div className="flex w-[400px] lg:w-1/2 flex-row justify-between">
                     <div className="flex flex-col 2md:w-full">
@@ -218,6 +219,7 @@ export function CarList(props){
                 </div>
             </div>
         ))}
+        </div>
         {/* <ReactModal style={customStyles} className="" isOpen={modalIsOpen}>{modalContent}</ReactModal> */}
         {modalIsOpen? modalContent:""}
         <div className={props.showEmpty?"block w-full text-center":"hidden"}>
