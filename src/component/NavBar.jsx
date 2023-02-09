@@ -27,7 +27,7 @@ export function NavBar(props){
     useEffect(()=>{
       async function MyRole(){
         try {
-          const res = await axios.get(`${props.BaseUrl}/auth/dashboard`,{ credentials: "include"})
+          const res = await axios.get(`${props.BaseUrl}/auth/dashboard`,{withCredentials:true})
           if(!res){
             return
           }else{
