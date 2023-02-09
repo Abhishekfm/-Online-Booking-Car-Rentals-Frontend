@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { isLux } from "../utils";
 import pcar2 from "../images/pcar2.png"
+import { ToastContainer, toast } from 'react-toastify';
 // import ReactModal from "react-modal";
 
 const customStyles = {
@@ -145,6 +146,7 @@ export function CarList(props){
         try {
             if(props.startDate === props.endDate){
                 console.log("Order Not Placed");
+                toast.error("Order Not Placed Because Start and End Date Is Same")
                 return
             }
             // setIsLoading(elem._id)
@@ -196,6 +198,8 @@ export function CarList(props){
         return finalPrice
     }
     return(
+        <>
+        <ToastContainer/>
         <div  className={modalIsOpen ? "flex w-full gap-4 m-4 flex-col" : "flex w-full gap-4 m-4 flex-col"}>
         {carData&&carData.map((ele)=>(
             <div className="flex w-full md:p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
@@ -220,5 +224,6 @@ export function CarList(props){
             <h1 className="text-[35px] font-bold">NO ORDERS!</h1>
         </div>
         </div>
+        </>
     )
 }
