@@ -65,7 +65,7 @@ export function NavBar(props){
             </button>
         </nav>
         {resp?
-              <div className="flex md:hidden flex-col w-[210px] rounded-[10px] fixed right-3 top-16 z-10 gap-2 bg-[#fff]">
+              <div className="flex md:hidden shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex-col w-[210px] rounded-[10px] absolute right-3 top-16 z-10 gap-2 bg-[#fff]">
                   <Link className=" text-base font-medium px-4 py-1 w-full hover:bg-slate-200 text-[#000] tracking-wide uppercase" to="/" >Home</Link>
                   {myRole === "ADMIN" || myRole === "USER"?<Link className=" px-4 py-1 hover:bg-slate-200 text-base text-[#000] font-medium tracking-wide uppercase" to="/order" >Order</Link>:""}
                   {myRole === "ADMIN"?<Link className="px-4 py-1 text-base font-medium hover:bg-slate-200 tracking-wide text-[#000] uppercase" to="/users" >Users</Link>:""}
