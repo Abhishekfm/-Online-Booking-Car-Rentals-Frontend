@@ -335,13 +335,13 @@ export function OrderCars({ BaseUrl }){
                             {ele.stage ==="PENDING"?<div className="flex flex-col justify-between h-[100px]">
                             <div className="flex flex-col items-center 2md:w-[200px]">
                                 <h1 className="text-[15px] sm:text-[20px] font-semibold">Price: ₹{ele.price}</h1>
-                                <button onClick={()=>{deleteMe(ele.carId, ele._id)}} className="text:sm xs:text-lg w-[100px] lg:w-[150px] rounded-[10px] font-semibold bg-[#CD0404] text-white 2md:px-4 2md:py-2">Delete Order</button>
+                                <button onClick={()=>{deleteMe(ele.carId, ele._id)}} className="text:sm xs:text-lg py-2 w-[100px] lg:w-[150px] rounded-[10px] font-semibold bg-[#CD0404] text-white 2md:px-4 2md:py-2">Delete Order</button>
                             </div>
                             </div>:ele.stage === "ONGOING"?<h2 className="text-[20px] font-semibold">Order is <span className="text-[20px] sm:text-[24px] font-bold uppercase text-[#5F9DF7]">on going</span></h2>:<h2 className="text-[20px] sm:text-[24px] text-[#285430] font-bold uppercase">success</h2>}
                         </div>
                     </div>
                     <div className="w-full flex flex-col gap-2 ">
-                        <h2 onClick={()=>{showLocation(ele._id, ele.orderDate.startDate, ele.orderDate.endDate, ele.carId, ele.stage)}} className="text-[20px] font-semibold cursor-pointer flex items-end">More Info <img className="w-[30px]" src={expand} alt="" /></h2>
+                        <h2 onClick={()=>{showLocation(ele._id, ele.orderDate.startDate, ele.orderDate.endDate, ele.carId, ele.stage)}} className="text-[15px] sm:text-[20px] font-semibold cursor-pointer flex items-end">More Info <img className="w-[30px]" src={expand} alt="" /></h2>
                         <div id={ele._id} className={isVisibleId === ele._id?"flex w-full flex-wrap gap-2 xs:gap-0 xs:flex-nowrap justify-around":"hidden"}>
                             <table className="table-auto max-w-lg 2md:w-1/2 text-left text-[18px]">
                                 <thead>
