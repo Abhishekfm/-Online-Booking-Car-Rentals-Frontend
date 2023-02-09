@@ -208,8 +208,8 @@ export function CarList(props){
                     {console.log(ele.url)}
                  <img className="md:h-[200px] h-[150px] w-[210px] md:w-[280px] lg:w-[340px] object-contain" src={ele.url? ele.url :isLux(ele.carName)?pcar2:car} alt="" />
                 </div>
-                <div className="flex w-[400px] lg:w-1/2 flex-row justify-between">
-                    <div className="flex flex-col 2md:w-full">
+                <div className="flex lg:w-1/2 flex-row justify-between">
+                    <div className="flex flex-col w-[100px] 2md:w-full">
                         <h2 className="text-[20px] lg:text-[30px] font-semibold">{ele.carName}</h2>
                         <h1 className="text-[20px] md:text-[30px] lg:text-[40px] text-[#F99417] font-semibold">₹{myPrice(ele.carName)}</h1>
                     </div>
