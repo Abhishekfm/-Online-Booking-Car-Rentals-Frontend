@@ -151,7 +151,6 @@ export function AllOrdersComp(props){
                 return
             }else{
                 console.log(res);
-                myOrders()
             }
         } catch (error) {
             console.log(error);
