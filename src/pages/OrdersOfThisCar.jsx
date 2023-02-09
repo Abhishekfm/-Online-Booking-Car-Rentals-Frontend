@@ -12,7 +12,7 @@ export function OrdersOfThisCar(props){
     const [globalVariable, setGlobalVariable, carName, setCarName, carTotal, setCarTotal, carAvailable, setCarAvailable, carUrl, setCarUrl] = useContext(MyContext);
     const [customerNames, setCustomerNames] = useState({})
     const [totalCars, setTotalCars] = useState(0)
-    const BaseUrl = "http://localhost:4000"
+    const BaseUrl = props.BaseUrl
     const navigate = useNavigate()
     async function getName(id){
         try {
