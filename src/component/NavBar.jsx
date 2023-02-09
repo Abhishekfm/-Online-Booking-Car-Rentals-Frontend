@@ -19,6 +19,8 @@ export function NavBar(props){
         }else{
           // Cookies.remove('token', { path: '' }) 
           console.log(res);
+          sessionStorage.clear()
+          sessionStorage.removeItem("token");
         }
       } catch (error) {
         console.log(error);
