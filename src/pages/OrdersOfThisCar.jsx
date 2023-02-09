@@ -16,7 +16,7 @@ export function OrdersOfThisCar(props){
     const navigate = useNavigate()
     async function getName(id){
         try {
-            const res = await axios.get(`${BaseUrl}/admin/getname/${id}`,{ credentials: "include"})
+            const res = await axios.get(`${BaseUrl}/admin/getname/${id}`,{ withCredentials:true })
             if(!res){
                 return 
             }else{
@@ -52,14 +52,14 @@ export function OrdersOfThisCar(props){
                 if(customerNames[element]){
                     continue
                 }
-                await axios.get(`${BaseUrl}/admin/getname/${element}`,{ credentials: "include"}).then((res) => {
+                await axios.get(`${BaseUrl}/admin/getname/${element}`,{ withCredentials:true }).then((res) => {
                         customerNames[element] = res.data.user.name;
                         customerNames[`email${element}`] = res.data.user.email
                         console.log(res.data.user)
                     });
             }
             if(globalVariable.length > 0){
-                await axios.get(`${BaseUrl}/admin/gettotalcars/${globalVariable[0].carId}`,{ credentials: "include"}).then((res) => {
+                await axios.get(`${BaseUrl}/admin/gettotalcars/${globalVariable[0].carId}`,{ withCredentials:true }).then((res) => {
                     console.log(res);
                     setTotalCars(res.data.car.totalCars)
                 });
@@ -74,7 +74,7 @@ export function OrdersOfThisCar(props){
     }, [globalVariable]);
     async function deleteThisOrder(carId, orderId){
         try {
-            const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ credentials: "include"})
+            const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ withCredentials:true })
             if(!res){
                 return
             }else{

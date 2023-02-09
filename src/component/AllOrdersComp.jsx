@@ -76,7 +76,7 @@ export function AllOrdersComp(props){
     async function deleteOrder(carId, orderId){
         try {
             setBtnClicked(true)
-            const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ credentials: "include"})
+            const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ withCredentials:true })
             if(res){
                 console.log(res);
                 props.getOrder()
@@ -112,7 +112,7 @@ export function AllOrdersComp(props){
             const res = await axios.post(`${props.BaseUrl}/u/verifyotp`,{
                 orderId,
                 enteredOtp:val
-            },{ credentials: "include"})
+            },{ withCredentials:true })
             if(Number(getDbOtp) <= 0){
                 setTimeout(() => {
                     setBtnClicked(false);
@@ -163,7 +163,7 @@ export function AllOrdersComp(props){
             const sbjct = "Delivery Of the Vehicle"
             const msg = `This is your one-time password. Give This OTP to our Dilvery Agent. 
             When you recieve your ${ele.carName} Booked Car.`
-            const res = await axios.get(`${props.BaseUrl}/u/sendotp/${orderId}/${sbjct}/${msg}`,{ credentials: "include"})
+            const res = await axios.get(`${props.BaseUrl}/u/sendotp/${orderId}/${sbjct}/${msg}`,{ withCredentials:true })
             if(!res){
                 setTimeout(() => {
                     setBtnClicked(false);
@@ -312,7 +312,7 @@ export function AllOrdersComp(props){
                 return
             }
             setUserId(id)
-            const res = await axios(`${props.BaseUrl}/admin/getname/${id}`,{ credentials: "include"})
+            const res = await axios(`${props.BaseUrl}/admin/getname/${id}`,{ withCredentials:true })
             if(res){
                 console.log(res);
                 setUserEmail(res.data.user.email)

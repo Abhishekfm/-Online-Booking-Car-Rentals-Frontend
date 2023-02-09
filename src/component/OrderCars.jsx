@@ -176,7 +176,7 @@ export function OrderCars({ BaseUrl }){
 
     async function deleteOrder(carId, orderId){
         try {
-            const res = await axios.delete(`${BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ credentials: "include"})
+            const res = await axios.delete(`${BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ withCredentials:true })
             if(!res){
                 return
             }else{
@@ -204,7 +204,7 @@ export function OrderCars({ BaseUrl }){
             const res = await axios.post(`${BaseUrl}/u/verifyotp`,{
                 orderId,
                 enteredOtp:val
-            },{ credentials: "include"})
+            },{ withCredentials:true })
             if(Number(getDbOtp) <= 0){
                 return
             }else{
@@ -259,7 +259,7 @@ export function OrderCars({ BaseUrl }){
             const f = calculateFine(ele);
             const msg = `This is your one-time password. Give This OTP to our Customer. 
             When you recieve ${ele.carName} car ${Number(f) === 0?"":`and fine of ₹${f} and Customer is fined because Customer have used the Vehicle for more than ${Math.floor(f/200)} Hour`}`
-            const res = await axios.get(`${BaseUrl}/u/sendotp/${orderId}/${sbjct}/${msg}`,{ credentials: "include"})
+            const res = await axios.get(`${BaseUrl}/u/sendotp/${orderId}/${sbjct}/${msg}`,{ withCredentials:true })
             if(!res){
                 return
             }else{
@@ -273,7 +273,7 @@ export function OrderCars({ BaseUrl }){
     }
     async function myOrders(){
         try {
-            const res = await axios.get(`${BaseUrl}/u/myorder/${skipNo2}`, { credentials: "include"})
+            const res = await axios.get(`${BaseUrl}/u/myorder/${skipNo2}`, { withCredentials:true })
             if(!res){
                 return
             }else{
@@ -297,7 +297,7 @@ export function OrderCars({ BaseUrl }){
     },[skipNo2])
     async function deleteMe(carId, orderId){
         try {
-            const res = await axios.delete(`${BaseUrl}/u/deleteorder/${carId}/${orderId}`,{ credentials: "include"})
+            const res = await axios.delete(`${BaseUrl}/u/deleteorder/${carId}/${orderId}`,{ withCredentials:true })
             if(!res){
                 return
             }else{

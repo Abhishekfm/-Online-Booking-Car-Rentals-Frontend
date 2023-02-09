@@ -13,7 +13,7 @@ export function NavBar(props){
     async function logMeOut(){
       try {
         const res = await axios.get(`${props.BaseUrl}/auth/logout`,
-        { credentials: "include"});
+        { withCredentials:true });
         if(!res){
           return
         }else{
@@ -27,7 +27,7 @@ export function NavBar(props){
     useEffect(()=>{
       async function MyRole(){
         try {
-          const res = await axios.get(`${props.BaseUrl}/auth/dashboard`,{withCredentials:true})
+          const res = await axios.get(`${props.BaseUrl}/auth/dashboard`,{ withCredentials:true })
           if(!res){
             return
           }else{

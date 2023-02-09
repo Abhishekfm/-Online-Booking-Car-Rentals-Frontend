@@ -23,7 +23,7 @@ export function Users(props){
     const [isVisibleId, setIsVisibleId] = useState(null);
     async function getAllUser(){
         try {
-            const res = await axios.post(`${props.BaseUrl}/admin/getalluser`,{ skipNo }, { credentials: "include"})
+            const res = await axios.post(`${props.BaseUrl}/admin/getalluser`,{ skipNo }, { withCredentials:true })
             if(!res){
                 return
             }else{
@@ -45,7 +45,7 @@ export function Users(props){
                 return
             }
             console.log("Yes Executed")
-            const res = await axios.get(`${props.BaseUrl}/admin/getorderbyid/${userId}/${skipNo2}`,{ credentials: "include"})
+            const res = await axios.get(`${props.BaseUrl}/admin/getorderbyid/${userId}/${skipNo2}`,{ withCredentials:true })
             if(!res){
                 return
             }else{
@@ -82,7 +82,7 @@ export function Users(props){
     }
     async function deleteOrder(carId, orderId){
         try {
-            const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ credentials: "include"})
+            const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ withCredentials:true })
             if(!res){
                 return
             }else{
@@ -99,7 +99,7 @@ export function Users(props){
             console.log(id);
             console.log(customerRole);
             let role = customerRole
-            const res = await axios.delete(`${props.BaseUrl}/admin/deleteuseraccount/${id}/${role}`,{ credentials: "include"})
+            const res = await axios.delete(`${props.BaseUrl}/admin/deleteuseraccount/${id}/${role}`,{ withCredentials:true })
             if(!res){
                 return
             }else{

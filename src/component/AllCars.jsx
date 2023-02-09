@@ -37,7 +37,7 @@ export function AllCars(props){
     async function addOneMoreCar(carId){
         try {
             const res = await axios.get(`${props.BaseUrl}/admin/addcaratsamelocation/${carId}`,
-            { credentials: "include"}
+            { withCredentials:true }
             )
             if(!res){
                 return
@@ -52,7 +52,7 @@ export function AllCars(props){
     async function decOneMoreCar(carId){
         try {
             const res = await axios.get(`${props.BaseUrl}/admin/decrementcaratsamelocation/${carId}`,
-            { credentials: "include"}
+            { withCredentials:true }
             )
             if(!res){
                 return
@@ -78,7 +78,7 @@ export function AllCars(props){
             console.log(carId);
             console.log(isLoading);
             const res = await axios.delete(`${props.BaseUrl}/admin/deletecar/${carId}`,
-            { credentials: "include"}
+            { withCredentials:true }
             )
             if(!res){
                 setTimeout(() => {
@@ -102,7 +102,7 @@ export function AllCars(props){
         try {
             let carId = ele._id
             const res = await axios.get(`${props.BaseUrl}/admin/getordersofcar/${carId}`,
-            { credentials: "include"}
+            { withCredentials:true }
             )
             if(!res){
                 console.log(res);
