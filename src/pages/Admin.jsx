@@ -106,6 +106,7 @@ export function Admin({ BaseUrl }) {
       await uploadImage()
       let res;
       if(!url){
+        console.log("no url")
         res = await axios.post(
           `${BaseUrl}/admin/createcar`,
           {
@@ -118,6 +119,7 @@ export function Admin({ BaseUrl }) {
           { withCredentials:true }
         );
       }else{
+        console.log(`url:${url}`)
         res = await axios.post(
           `${BaseUrl}/admin/createcar`,
           {
