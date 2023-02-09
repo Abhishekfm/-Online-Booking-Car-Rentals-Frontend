@@ -78,6 +78,7 @@ export function Admin({ BaseUrl }) {
       });
       const data = await response.json();
       setUrl(data.url);
+      console.log(url);
       console.log(data);
     } catch (err) {
       console.log(err);
