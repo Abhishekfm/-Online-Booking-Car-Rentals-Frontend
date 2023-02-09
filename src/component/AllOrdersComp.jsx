@@ -79,7 +79,7 @@ export function AllOrdersComp(props){
             const res = await axios.delete(`${props.BaseUrl}/admin/deleteorderbyid/${carId}/${orderId}`,{ withCredentials:true })
             if(res){
                 console.log(res);
-                props.getOrder()
+                await props.getOrder()
             }
             setTimeout(() => {
                 setBtnClicked(false);
@@ -181,8 +181,8 @@ export function AllOrdersComp(props){
                 if(res.data.otp){
                     setGetDbOtp(res.data.otp)
                 }else{
-                    await deleteOrder(carId, orderId)
                     setShowOtpModal(false)
+                    await deleteOrder(carId, orderId)
                 }
             }
             return
