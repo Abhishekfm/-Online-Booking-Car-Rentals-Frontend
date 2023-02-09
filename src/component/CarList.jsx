@@ -201,7 +201,7 @@ export function CarList(props){
         <>
         <ToastContainer/>
         <div  className={modalIsOpen ? "flex w-full gap-4 m-4 flex-col" : "flex w-full gap-4 m-4 flex-col"}>
-        <div className="w-screen flex flex-col">
+        <div className="flex flex-col">
         {carData&&carData.map((ele)=>(
             <div className="flex w-full md:p-4 flex-row items-start justify-around border-dashed border-b-2 border-slate-400">
                 <div className="">

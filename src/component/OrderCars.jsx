@@ -324,7 +324,6 @@ export function OrderCars({ BaseUrl }){
                 <div className={!showEmpty?"flex w-full p-4 flex-col items-start justify-around border-dashed border-b-2 border-slate-400":"hidden"}>
                     <div className="flex w-full p-4 flex-row h-full items-start justify-around ">
                         <div>
-                            {console.log(ele.url)}
                          <img className="md:h-[200px] h-[150px] w-[250px] md:w-[280px] lg:w-[340px] object-contain" src={ele.url !== "EMPTY"?ele.url:car} alt="" />
                         </div>
                         <div className="flex w-[400px] lg:w-1/2 flex-row h-full justify-between">
