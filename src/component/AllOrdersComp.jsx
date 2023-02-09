@@ -144,18 +144,6 @@ export function AllOrdersComp(props){
             return
         }
     }
-    async function deleteMe(carId, orderId){
-        try {
-            const res = await axios.delete(`${props.BaseUrl}/u/deleteorder/${carId}/${orderId}`,{ withCredentials:true })
-            if(!res){
-                return
-            }else{
-                console.log(res);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
     async function sendOtpToCustomer(ele, carId, orderId){
         try {
             setIsClickedOnSendOtp(orderId)
@@ -193,9 +181,8 @@ export function AllOrdersComp(props){
                 if(res.data.otp){
                     setGetDbOtp(res.data.otp)
                 }else{
-                    await deleteMe(carId, orderId)
+                    await deleteOrder(carId, orderId)
                     setShowOtpModal(false)
-                    props.showResults()
                 }
             }
             return
