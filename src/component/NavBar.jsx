@@ -12,7 +12,7 @@ export function NavBar(props){
     const [resp, setResp] = useState(false)
     async function logMeOut(){
       try {
-        const res = await axios.get(`${props.BaseUrl}/auth/logout`,
+        const res = await axios.post(`${props.BaseUrl}/auth/logout`,
         { credentials: "include"});
         if(!res){
           return
