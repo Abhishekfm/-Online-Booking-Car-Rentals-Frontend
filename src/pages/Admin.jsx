@@ -58,7 +58,7 @@ export function Admin({ BaseUrl }) {
     setNumberOfCars(val)
   }
 
-  const uploadImage = async () => {
+  async function uploadImage() {
     // Get the file from the event
     const file = image;
     if(!file){
@@ -87,7 +87,7 @@ export function Admin({ BaseUrl }) {
     setUrl(url);
     console.log(url);
   };
-  const showResults = async () => {
+  async function showResults (){
     try {
       if (
         !countryNameValue ||
