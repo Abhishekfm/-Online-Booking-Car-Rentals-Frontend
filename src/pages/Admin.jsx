@@ -72,7 +72,7 @@ export function Admin({ BaseUrl }) {
     formData.append("cloud_name", process.env.CLOUD_NAME);
     formData.append("api_key", process.env.CLOUD_API_KEY);
 
-    fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
+    await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
       method: "POST",
       body: formData,
     })
