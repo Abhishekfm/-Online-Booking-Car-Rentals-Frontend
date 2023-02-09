@@ -79,11 +79,15 @@ export function Admin({ BaseUrl }) {
       const data = await response.json();
       setUrl(data.url);
       console.log(url);
+      return url
       console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    console.log(url);
+  }, [url]);
   const showResults = async () => {
     try {
       if (
@@ -100,9 +104,10 @@ export function Admin({ BaseUrl }) {
         toast.error("Provide All Details");
         return;
       }
-      await uploadImage()
+      let url2 = await uploadImage()
       let res;
-      if(!url){
+      console.log(url2)
+      if(!url2){
         console.log("no url")
         res = await axios.post(
           `${BaseUrl}/admin/createcar`,
@@ -125,7 +130,7 @@ export function Admin({ BaseUrl }) {
             state: stateNameValue,
             city: cityName},
             numberOfCars,
-            url
+            url2
           },
           { withCredentials:true }
         );
