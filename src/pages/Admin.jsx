@@ -72,10 +72,13 @@ export function Admin({ BaseUrl }) {
     formData.append("api_key", process.env.CLOUD_API_KEY);
   
     try {
-      const response = await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
-        method: "POST",
-        body: formData,
-      });
+      // const response = await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
+      //   method: "POST",
+      //   body: formData,
+      // });
+      const response = await axios.post("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload",{
+        formData
+      })
       const data = await response.json();
       setUrl(data.url);
       console.log(url);
