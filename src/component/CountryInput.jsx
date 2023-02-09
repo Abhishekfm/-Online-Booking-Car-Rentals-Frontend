@@ -76,7 +76,7 @@ export function CountryInput(props) {
       />
       {/* {countryError?
               <label className="text-[#DC0000] absolute left-[20px] bottom-[-20px]">Country Cant be Empty</label>:""} */}
-      <div className="flex flex-col rounded-md text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
+      <div className="flex flex-col z-20 rounded-md text-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
       {suggestions.length > 0 && show && (
         <ul >
           {suggestions.map((country) => (

@@ -75,7 +75,7 @@ export function StateInput(props) {
         onBlur={handleInputBlur}
         placeholder="Enter a state name"
       />
-      <div className="flex flex-col rounded shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-black max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
+      <div className="flex z-20 flex-col rounded shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-black max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
       {suggestions.length > 0 && show && (
         <ul>
           {suggestions.map((state) => (

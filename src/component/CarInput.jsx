@@ -55,7 +55,7 @@ export function CarInput(props){
               onBlur={handleInputBlur}
               placeholder="Enter a car name"
             />
-            <div className="flex flex-col rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-black max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
+            <div className="flex flex-col z-20 rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-black max-h-[200px] overflow-y-scroll text-[18px] w-full bg-white top-[80px] left-[0px] absolute">
             {suggestions.length > 0 && show && (
               <ul>
                 {suggestions.map((car) => (
