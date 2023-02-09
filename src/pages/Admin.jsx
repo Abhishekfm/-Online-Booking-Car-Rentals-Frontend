@@ -64,33 +64,29 @@ export function Admin({ BaseUrl }) {
     if(!file){
       return
     }
+    let url;
     // Upload the file to Cloudinary
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "carimagecloud");
     formData.append("cloud_name", process.env.CLOUD_NAME);
     formData.append("api_key", process.env.CLOUD_API_KEY);
-  
-    try {
-      // const response = await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
-      //   method: "POST",
-      //   body: formData,
-      // });
-      const response = await axios.post("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload",{
-        formData
-      },{ withCredentials:true })
-      const data = await response.json();
-      setUrl(data.url);
-      console.log(url);
-      return url
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
+
+    await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        url = data.url;
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setUrl(url);
     console.log(url);
-  }, [url]);
+  };
   const showResults = async () => {
     try {
       if (
@@ -107,10 +103,9 @@ export function Admin({ BaseUrl }) {
         toast.error("Provide All Details");
         return;
       }
-      let url2 = await uploadImage()
+      await uploadImage()
       let res;
-      console.log(url2)
-      if(!url2){
+      if(!url){
         console.log("no url")
         res = await axios.post(
           `${BaseUrl}/admin/createcar`,
@@ -124,7 +119,7 @@ export function Admin({ BaseUrl }) {
           { withCredentials:true }
         );
       }else{
-        console.log(`url:${url}`)
+        console.log(url)
         res = await axios.post(
           `${BaseUrl}/admin/createcar`,
           {
@@ -133,7 +128,7 @@ export function Admin({ BaseUrl }) {
             state: stateNameValue,
             city: cityName},
             numberOfCars,
-            url2
+            url
           },
           { withCredentials:true }
         );
