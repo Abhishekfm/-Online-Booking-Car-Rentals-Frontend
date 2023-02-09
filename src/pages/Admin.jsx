@@ -58,7 +58,7 @@ export function Admin({ BaseUrl }) {
     setNumberOfCars(val)
   }
 
-  async function uploadImage() {
+  function uploadImage() {
     // Get the file from the event
     const file = image;
     if(!file){
@@ -72,13 +72,14 @@ export function Admin({ BaseUrl }) {
     formData.append("cloud_name", process.env.CLOUD_NAME);
     formData.append("api_key", process.env.CLOUD_API_KEY);
 
-    await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
+    fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         url = data.url;
+        setUrl(url)
         console.log(data);
       })
       .catch((err) => {
@@ -89,49 +90,34 @@ export function Admin({ BaseUrl }) {
   };
   async function showResults (){
     try {
-      if (
-        !countryNameValue ||
-        !stateNameValue ||
-        !cityName ||
-        !numberOfCars
-      ) {
-        // setCountryError(true)
-        // setStateError(true)
-        // setCityError(true)
-        // setStartError(true)
-        // setEndError(true)
+      if (!countryNameValue || !stateNameValue || !cityName || !numberOfCars) {
         toast.error("Provide All Details");
         return;
       }
       await uploadImage()
       let res;
       if(!url){
+        if(image){
+          
+        }
         console.log("no url")
-        res = await axios.post(
-          `${BaseUrl}/admin/createcar`,
-          {
+        res = await axios.post(`${BaseUrl}/admin/createcar`,{
             carName,
             carLocation:{country: countryNameValue,
             state: stateNameValue,
             city: cityName},
             numberOfCars
-          },
-          { withCredentials:true }
-        );
+          },{ withCredentials:true });
       }else{
         console.log(url)
-        res = await axios.post(
-          `${BaseUrl}/admin/createcar`,
-          {
+        res = await axios.post(`${BaseUrl}/admin/createcar`,{
             carName,
             carLocation:{country: countryNameValue,
             state: stateNameValue,
             city: cityName},
             numberOfCars,
             url
-          },
-          { withCredentials:true }
-        );
+          },{ withCredentials:true });
       }
       if (!res) {
         return;
@@ -147,13 +133,9 @@ export function Admin({ BaseUrl }) {
   async function showData(){
     try {
       console.log(skipNo);
-      const res = await axios.post(
-        `${BaseUrl}/admin/showcardb`,
-        {
+      const res = await axios.post(`${BaseUrl}/admin/showcardb`,{
           skipNo
-        },
-        { withCredentials:true }
-      );
+        },{ withCredentials:true });
       if(!res){
         return
       }else{
