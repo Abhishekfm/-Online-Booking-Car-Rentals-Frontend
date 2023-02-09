@@ -214,7 +214,7 @@ export function CarList(props){
                         <h1 className="text-[20px] md:text-[30px] lg:text-[40px] text-[#F99417] font-semibold">₹{myPrice(ele.carName)}</h1>
                     </div>
                     <div>
-                        {isLoading===ele._id?<button className="text-lg w-[100px] 2md:w-[120px] lg:w-[150px] rounded-[10px] font-semibold bg-[#1f1f1f] hover:bg-[#434242] text-white px-4 py-2">Renting...</button>:<button onClick={()=>{preBook(ele)}} className="lg:text-lg w-[100px] 2md:w-[120px] lg:w-[150px] rounded-[10px] font-semibold bg-[#1f1f1f] hover:bg-[#434242] text-white px-4 py-2">Rent Me</button>}
+                        {isLoading===ele._id?<button className="text-lg w-[80px] 2md:w-[120px] lg:w-[150px] rounded-[10px] font-semibold bg-[#1f1f1f] hover:bg-[#434242] text-white px-4 py-2">Renting...</button>:<button onClick={()=>{preBook(ele)}} className="lg:text-lg w-[80px] 2md:w-[120px] lg:w-[150px] rounded-[10px] font-semibold bg-[#1f1f1f] hover:bg-[#434242] text-white px-4 py-2">Rent Me</button>}
                     </div>
                 </div>
             </div>
