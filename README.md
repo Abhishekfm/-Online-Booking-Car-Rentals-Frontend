@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Online Booking System for Car Rentals
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Problem Statement
+Design a web application to allow users to rent cars anywhere in the world.
 
-## Available Scripts
+### What is a Car Rental Booking System?
+A car rental reservation system is an online booking tool created for individuals, car operators, and for firms to hire cars on a small to large scale. Customers can quickly book cars on this secure platform and administrators can manage the rental car fleets. Getting a rental car helps people get around when they don't have access to their car or don't own a car at all.
 
-In the project directory, you can run:
+### Project Objectives
+- To create a web-based system that enables customers to register and book cars online and helps the company run its vehicle rental operations successfully.
+- To have a user dashboard for logged-in users and an admin dashboard for admins/managers.
+- Users must be able to see available cars and rent any of the available cars after they log in and fill in their necessary details.
+- The dashboard should also show the rental period chosen by the user while renting the car.
+- Admins can add/edit/delete any of the cars available for rent.
+- All non-logged-in users can browse the cars available for renting and see relevant info for any specific car.
+- The project should have a clean UI and be easy to use.
 
-### `npm start`
+### Functional and Non-Functional Requirements
+#### Functional Requirements
+1. User Registration: Users can register for the application by filling out the necessary details.
+2. Online Reservations: Users can log in to make a reservation or an online booking.
+3. Dashboard: The admin can see all information such as the total number of cars, number of cars available to rent, number of cars booked/rented, and information of the person who booked/rented the car.
+4. User Account: Registered users have access to the user area where they can see their bookings (both past and future).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Non-Functional Requirements
+1. Security: The system should have a certain level of security so that not anyone can access sensitive information and passwords should be properly encrypted in case of a data breach.
+2. Robustness: If the user's system crashes, a backup of the user data must be stored on remote database servers to enable recovery.
+3. Performance: The application must be lightweight and the UI should be fast and responsive.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Use Case Table
+Authentication System | Register, Login, Logout | User and Admin
+Search Form | Search/Find cars | User
+Chat Form | Send Message | User
+Monitor Total Bookings | | Admin
+Booking Status | Check personal Booking | User and Admin
+Manage Users, Cars, and Bookings | | Admin
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Database
+The project uses MongoDB, a cross-platform document-oriented database program classified as a NoSQL database. The database will store all the necessary information about the users, cars, and bookings.
