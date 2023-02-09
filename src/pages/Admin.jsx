@@ -118,6 +118,7 @@ export function Admin({ BaseUrl }) {
             numberOfCars,
             url
           },{ withCredentials:true });
+        setUrl("")
       }
       if (!res) {
         return;
