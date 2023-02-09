@@ -194,8 +194,8 @@ export function AllOrdersComp(props){
                     setGetDbOtp(res.data.otp)
                 }else{
                     await deleteMe(carId, orderId)
-                    props.showResults()
                     setShowOtpModal(false)
+                    props.showResults()
                 }
             }
             return
