@@ -28,8 +28,8 @@ export function MyForm({onInputChange}) {
   }
 
   return (
-    <form className='md:w-full flex gap-4 md:gap-4 flex-wrap md:flex-nowrap'>
-      <div className='flex flex-col w-[150px] md:w-[220px]'>
+    <form className='w-[200px] md:w-full flex gap-4 md:gap-4 flex-wrap md:flex-nowrap'>
+      <div className='flex flex-col w-[100px] md:w-[220px]'>
       <label className='text-lg font-semibold' htmlFor="start-date">Start Date:</label>
       <input 
         type="datetime-local" 
@@ -41,7 +41,7 @@ export function MyForm({onInputChange}) {
         min={new Date().toISOString().substr(0, 16)}
       />
       </div>
-      <div className='flex flex-col w-[150px] md:w-[220px]'>
+      <div className='flex flex-col w-[100px] md:w-[220px]'>
       <label className='text-lg font-semibold' htmlFor="end-date">End Date:</label>
       <input 
         type="datetime-local" 
