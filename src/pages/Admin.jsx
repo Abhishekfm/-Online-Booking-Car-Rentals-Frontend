@@ -64,7 +64,7 @@ export function Admin({ BaseUrl }) {
     if(!file){
       return
     }
-    let url;
+    let url2;
     // Upload the file to Cloudinary
     const formData = new FormData();
     formData.append("file", file);
@@ -78,14 +78,14 @@ export function Admin({ BaseUrl }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        url = data.url;
-        setUrl(url)
+        url2 = data.url;
+        setUrl(url2)
         console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
-    setUrl(url);
+    setUrl(url2);
     console.log(url);
   };
   const showResults = async () => {
