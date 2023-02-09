@@ -146,7 +146,7 @@ export function AllOrdersComp(props){
     }
     async function deleteMe(carId, orderId){
         try {
-            const res = await axios.delete(`${BaseUrl}/u/deleteorder/${carId}/${orderId}`,{ withCredentials:true })
+            const res = await axios.delete(`${props.BaseUrl}/u/deleteorder/${carId}/${orderId}`,{ withCredentials:true })
             if(!res){
                 return
             }else{
