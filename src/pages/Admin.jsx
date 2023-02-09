@@ -64,29 +64,24 @@ export function Admin({ BaseUrl }) {
     if(!file){
       return
     }
-    let url2;
     // Upload the file to Cloudinary
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "carimagecloud");
     formData.append("cloud_name", process.env.CLOUD_NAME);
     formData.append("api_key", process.env.CLOUD_API_KEY);
-
-    await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        url2 = data.url;
-        setUrl(url2)
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
+  
+    try {
+      const response = await fetch("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload", {
+        method: "POST",
+        body: formData,
       });
-    setUrl(url2);
-    console.log(url);
+      const data = await response.json();
+      setUrl(data.url);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const showResults = async () => {
     try {
