@@ -78,7 +78,7 @@ export function Admin({ BaseUrl }) {
       // });
       const response = await axios.post("https://api.cloudinary.com/v1_1/dl7dfvlz8/image/upload",{
         formData
-      })
+      },{ withCredentials:true })
       const data = await response.json();
       setUrl(data.url);
       console.log(url);
