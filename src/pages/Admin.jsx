@@ -58,7 +58,7 @@ export function Admin({ BaseUrl }) {
     setNumberOfCars(val)
   }
 
-  function uploadImage() {
+  async function uploadImage() {
     // Get the file from the event
     const file = image;
     if(!file){
