@@ -115,7 +115,7 @@ export function NavBar(props){
               <Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/" >Home</Link>
               {myRole === "ADMIN" || myRole === "USER"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/order" >Order</Link>:""}
               {myRole === "ADMIN"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/users" >Users</Link>:""}
-              <p onClick={()=>{setShowModal(true)}} className="mx-4 text-base font-medium tracking-wide uppercase">Available IN</p>
+              <p onClick={()=>{setShowModal(true)}} className="mx-4 cursor-pointer text-base font-medium tracking-wide uppercase">Available IN</p>
               {myRole === "ADMIN"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/admin" >Admin Controller</Link>:""}
               {myRole === "ADMIN"?<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/allorder" >All Order</Link>:""}
               {myRole === "ADMIN" || myRole === "USER"?<Link onClick={()=>{logMeOut()}} className="mx-4 text-base font-medium tracking-wide uppercase" to="/login" >LogOut</Link>:<Link className="mx-4 text-base font-medium tracking-wide uppercase" to="/login" >LogIn</Link>}
@@ -130,7 +130,7 @@ export function NavBar(props){
                   <Link className=" text-base font-medium px-4 py-1 w-full hover:bg-slate-200 text-[#000] tracking-wide uppercase" to="/" >Home</Link>
                   {myRole === "ADMIN" || myRole === "USER"?<Link className=" px-4 py-1 hover:bg-slate-200 text-base text-[#000] font-medium tracking-wide uppercase" to="/order" >Order</Link>:""}
                   {myRole === "ADMIN"?<Link className="px-4 py-1 text-base font-medium hover:bg-slate-200 tracking-wide text-[#000] uppercase" to="/users" >Users</Link>:""}
-                  <p onClick={()=>{setShowModal(true)}} className="mx-4 text-base font-medium tracking-wide uppercase">Available IN</p>
+                  <p onClick={()=>{setShowModal(true)}} className="mx-4 cursor-pointer text-base font-medium tracking-wide uppercase">Available IN</p>
                   {myRole === "ADMIN"?<Link className="px-4 py-1 text-base font-medium hover:bg-slate-200 tracking-wide text-[#000] uppercase" to="/admin" >Admin Controller</Link>:""}
                   {myRole === "ADMIN"?<Link className="px-4 py-1 text-base font-medium hover:bg-slate-200 tracking-wide text-[#000] uppercase" to="/allorder" >All Order</Link>:""}
                   {myRole === "ADMIN" || myRole === "USER"?<Link onClick={()=>{logMeOut()}} className=" px-4 py-1 text-[#000] hover:bg-slate-200 text-base font-medium tracking-wide uppercase" to="/login" >LogOut</Link>:<Link className=" px-4 py-1 hover:bg-slate-200 text-[#000] text-base font-medium tracking-wide uppercase" to="/login" >LogIn</Link>}
