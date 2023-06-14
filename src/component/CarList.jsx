@@ -223,7 +223,7 @@ export function CarList(props){
         {/* <ReactModal style={customStyles} className="" isOpen={modalIsOpen}>{modalContent}</ReactModal> */}
         {modalIsOpen? modalContent:""}
         <div className={props.showEmpty?"block w-full text-center":"hidden"}>
-            <h1 className="text-[35px] font-bold">NO ORDERS!</h1>
+            <h1 className="text-[35px] font-bold">NO CARS!</h1>
         </div>
         </div>
         </>
